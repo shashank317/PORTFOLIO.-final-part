@@ -9,83 +9,103 @@ export function Hero({ ready }: { ready: boolean }) {
     <section
       ref={ref}
       id="top"
-      className="relative min-h-[100svh] w-full overflow-hidden pt-28 pb-16"
+      className="relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden pt-32 pb-8 md:pb-10"
     >
-      {/* portrait */}
+      {/* portrait image background */}
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-full md:w-[62%] lg:w-[56%]"
-        style={{ transform: `translate3d(0,${p * -40}px,0)` }}
+        className="pointer-events-none absolute inset-y-0 right-0 w-full md:w-[58%] lg:w-[52%]"
+        style={{ transform: `translate3d(0,${p * -30}px,0)` }}
       >
-        <div className="absolute inset-0 glow-radial opacity-70" />
+        <div className="absolute inset-0 glow-radial opacity-60" />
         <img
           src={hero}
           alt="Shashank H, side profile portrait lit with a cool blue rim light"
-          className={cls("fade h-full w-full object-cover object-[62%_18%] transition-transform")}
+          className={cls("fade h-full w-full object-cover object-[60%_20%] transition-transform")}
           style={{
-            transform: ready ? "scale(1)" : "scale(1.04)",
-            transitionProperty: "opacity, transform",
+            filter: "brightness(2.2) contrast(1.05)",
+            transform: ready ? "scale(1)" : "scale(1.03)",
+            transitionProperty: "opacity, transform, filter",
             transitionDuration: "1.6s",
             transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
           }}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0.92)_22%,rgba(5,5,5,0.45)_45%,rgba(5,5,5,0.12)_70%,rgba(5,5,5,0)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+        {/* Soft edge blend overlays */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,#050505_12%,rgba(5,5,5,0.75)_32%,rgba(5,5,5,0.18)_65%,rgba(5,5,5,0)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[1600px] min-h-[78svh] grid-cols-12 items-end gap-y-10 px-5 md:px-10">
-        <div className="col-span-12 md:col-span-7">
-          <p className={cls("fade label mb-8")} style={{ ["--d" as string]: "150ms" }}>
-            Software Engineer / Backend / AI Systems
+      {/* Main content grid */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-between px-6 md:px-12">
+        {/* Top/Middle text block */}
+        <div className="mt-auto pt-6 pb-12">
+          {/* Subtitle */}
+          <p
+            className={cls("fade label mb-6 text-[0.7rem] tracking-[0.22em] text-muted-foreground")}
+            style={{ ["--d" as string]: "150ms" }}
+          >
+            SOFTWARE ENGINEER / BACKEND / AI SYSTEMS
           </p>
 
-          <h1 className="display text-[clamp(4.5rem,15vw,14rem)] leading-[0.82] md:text-[clamp(6rem,12vw,14rem)]">
+          {/* Main Display Title */}
+          <h1 className="display text-[clamp(4.5rem,14.5vw,10.5rem)] leading-[0.82] tracking-[-0.03em] text-foreground mb-6">
             <span className={cls("mask")} style={{ ["--d" as string]: "250ms" }}>
-              <span>Shashank.H</span>
-            </span>
-            <span className={cls("mask")} style={{ ["--d" as string]: "380ms" }}>
-              <span className="inline-flex items-baseline gap-8">
-                <span className="label mb-[0.35em] hidden md:inline-block">/ 2026</span>
-              </span>
+              <span>SHASHANK.H</span>
             </span>
           </h1>
 
-          <div className="mt-10 max-w-xl">
+          {/* Year Indicator */}
+          <p
+            className={cls("fade label mb-10 text-[0.72rem] tracking-[0.24em] text-muted-foreground")}
+            style={{ ["--d" as string]: "380ms" }}
+          >
+            / 2026
+          </p>
+
+          {/* Intro Paragraphs */}
+          <div className="max-w-xl space-y-4">
             <p
-              className={cls("fade text-[clamp(1rem,1.4vw,1.35rem)] leading-[1.45]")}
+              className={cls("fade text-[clamp(1.1rem,1.8vw,1.6rem)] font-normal leading-[1.35] text-foreground")}
               style={{ ["--d" as string]: "520ms" }}
             >
               I build backend systems and AI-powered products with Python.
             </p>
             <p
-              className={cls("fade mt-4 text-[clamp(0.85rem,1.1vw,1rem)] leading-relaxed text-muted-foreground")}
+              className={cls("fade text-[clamp(0.875rem,1.15vw,1.05rem)] leading-relaxed text-muted-foreground")}
               style={{ ["--d" as string]: "620ms" }}
             >
               Focused on APIs, backend engineering, automation, and practical AI integrations.
             </p>
           </div>
-
-          <div
-            className={cls("fade mt-12 flex flex-wrap items-center gap-x-10 gap-y-5")}
-            style={{ ["--d" as string]: "720ms" }}
-          >
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-3 border-b border-foreground pb-2 font-mono text-[0.7rem] tracking-[0.24em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
-            >
-              View selected work
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
-            <span className="label">Based in Bengaluru, India</span>
-          </div>
         </div>
 
-        <div className="col-span-12 flex items-end justify-between md:col-span-5">
-          <span className={cls("fade label")} style={{ ["--d" as string]: "900ms" }}>
-            00 / Intro
-          </span>
-          <span className={cls("fade label")} style={{ ["--d" as string]: "980ms" }}>
-            Scroll ↓
-          </span>
+        {/* Bottom Alignment Bar */}
+        <div
+          className={cls("fade mt-auto flex w-full flex-wrap items-center justify-between gap-y-4 pt-6")}
+          style={{ ["--d" as string]: "750ms" }}
+        >
+          {/* Left Actions & Location */}
+          <div className="flex flex-wrap items-center gap-6 md:gap-8">
+            <a
+              href="#work"
+              className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-mono text-[0.7rem] tracking-[0.24em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
+            >
+              <span>View selected work</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+            <span className="label text-[0.68rem] tracking-[0.22em]">
+              Based in Bengaluru, India
+            </span>
+          </div>
+
+          {/* Right Section Label & Scroll Prompt */}
+          <div className="flex items-center gap-12 md:gap-24">
+            <span className={cls("fade label text-[0.68rem] tracking-[0.22em]")} style={{ ["--d" as string]: "900ms" }}>
+              00 / Intro
+            </span>
+            <span className={cls("fade label text-[0.68rem] tracking-[0.22em]")} style={{ ["--d" as string]: "980ms" }}>
+              Scroll ↓
+            </span>
+          </div>
         </div>
       </div>
     </section>
