@@ -1,8 +1,10 @@
+import { Link } from "@tanstack/react-router";
 import doubleExposure from "@/assets/double-exposure.png";
 import cap from "@/assets/cap-portrait.png";
 import { SectionHead } from "./SectionHead";
 
-type Project = {
+export type Project = {
+  id: string;
   number: string;
   title: string;
   description: string;
@@ -12,10 +14,12 @@ type Project = {
   image?: string;
   alt?: string;
   visual: "architecture" | "image" | "waveform";
+  link: string;
 };
 
-const PROJECTS: Project[] = [
+export const PROJECTS: Project[] = [
   {
+    id: "teamsync",
     number: "01",
     title: "TeamSync",
     description:
@@ -25,12 +29,14 @@ const PROJECTS: Project[] = [
       "Designed and built the application architecture, backend APIs, database workflows, and frontend experience.",
     stack: ["FastAPI", "PostgreSQL", "JavaScript", "Tailwind CSS", "OpenRouter API"],
     visual: "architecture",
+    link: "/projects/teamsync",
   },
   {
+    id: "ai-resume-enhancer",
     number: "02",
     title: "AI Resume Enhancer",
     description:
-      "A web application that analyzes resumes against job descriptions and uses AI-assisted reasoning to generate a more targeted version with structured feedback.",
+      "An AI-assisted resume optimization platform that analyzes resumes against job descriptions and uses structured feedback to generate targeted improvements.",
     role: "Full-stack development",
     context:
       "Built the backend document-processing pipeline, AI integration, ATS-oriented analysis workflow, and interactive frontend.",
@@ -38,17 +44,20 @@ const PROJECTS: Project[] = [
     image: doubleExposure,
     alt: "Black and white double exposure portrait used as an editorial transition",
     visual: "image",
+    link: "/projects/ai-resume-enhancer",
   },
   {
+    id: "whatsapp-gita-ai",
     number: "03",
     title: "WhatsApp Gita AI",
     description:
-      "An automated system that selects Bhagavad Gita verses, generates multilingual voice content, and delivers scheduled messages through WhatsApp.",
+      "An automated system for verse selection, multilingual text-to-speech generation, scheduling, and WhatsApp delivery.",
     role: "Backend & automation",
     context:
       "Designed the application workflow around verse selection, AI-assisted context handling, text-to-speech generation, cloud-hosted audio, scheduling, and WhatsApp delivery.",
     stack: ["Python", "AWS S3", "Text-to-Speech", "Twilio", "Automation"],
     visual: "waveform",
+    link: "/projects/whatsapp-gita-ai",
   },
 ];
 
@@ -107,8 +116,8 @@ function Visual({ project }: { project: Project }) {
             className="reveal relative flex items-center justify-between border-t py-4"
             style={{ ["--d" as string]: `${i * 110}ms` }}
           >
-            <span className="font-mono text-[0.66rem] tracking-[0.16em] uppercase">{row}</span>
-            <span className="font-mono text-[0.6rem] text-accent">{`0${i + 1}`}</span>
+            <span className="font-sans text-[0.72rem] font-medium tracking-[0.04em] uppercase">{row}</span>
+            <span className="font-label text-[0.75rem] text-accent">{`0${i + 1}`}</span>
           </div>
         ),
       )}
@@ -118,78 +127,94 @@ function Visual({ project }: { project: Project }) {
 
 export function Work() {
   return (
-    <section id="work" className="relative pad-section">
-      <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
+    <section id="work" className="relative pt-16 pb-12">
+      <div className="mx-auto w-full max-w-[1600px] px-6 md:px-12">
         <SectionHead number="03" label="Selected Work" />
-        <h2 className="display mt-12 text-[clamp(3.5rem,18vw,9rem)] leading-[0.84] md:text-[clamp(4.5rem,9vw,9rem)]">
-          <span className="mask">
-            <span>Things</span>
-          </span>
-          <span className="mask" style={{ ["--d" as string]: "120ms" }}>
-            <span>I built.</span>
-          </span>
-        </h2>
-      </div>
+        
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-12 mb-16">
+          <h2 className="display text-[clamp(3.5rem,18vw,9rem)] leading-[0.84] md:text-[clamp(4.5rem,9vw,9rem)]">
+            <span className="mask">
+              <span>Things</span>
+            </span>
+            <span className="mask" style={{ ["--d" as string]: "120ms" }}>
+              <span>I built.</span>
+            </span>
+          </h2>
+          <Link
+            to="/projects"
+            className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-label text-[0.85rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent w-fit mb-2"
+          >
+            <span>EXPLORE ALL PROJECTS</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
 
-      <div className="mt-16 flex flex-col">
-        {PROJECTS.map((p, i) => (
-          <article key={p.number} className="group border-t py-12 md:py-16">
-            <div className="mx-auto grid w-full max-w-[1600px] grid-cols-12 gap-y-12 px-5 md:gap-x-12 md:px-10">
-              <div
-                className={`col-span-12 md:col-span-5 ${i % 2 === 1 ? "md:order-2" : "md:order-1"}`}
-              >
-                <Visual project={p} />
-              </div>
+        {/* High-End Interactive 3-Column Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {PROJECTS.map((p, i) => (
+            <article
+              key={p.id}
+              className="group relative flex flex-col justify-between overflow-hidden border border-hairline/40 bg-surface/40 p-8 md:p-10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
+              style={{ ["--d" as string]: `${i * 120}ms` }}
+            >
+              {/* Subtle top glow highlight */}
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <div
-                className={`col-span-12 flex flex-col md:col-span-7 ${i % 2 === 1 ? "md:order-1" : "md:order-2"}`}
-              >
-                <div className="flex items-baseline gap-6">
-                  <span className="display text-[clamp(3rem,16vw,7rem)] leading-none text-elevated md:text-[clamp(3rem,7vw,7rem)]">
+              <div>
+                {/* Header Row: Project Number & Category Badge */}
+                <div className="flex items-center justify-between border-b border-hairline/30 pb-5">
+                  <span className="display text-3xl font-light text-accent">
                     {p.number}
                   </span>
-                  <span className="draw rule flex-1" />
+                  <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-muted-foreground bg-background/60 px-3 py-1 border border-hairline/30">
+                    {p.role}
+                  </span>
                 </div>
 
-                <h3 className="display mt-4 text-[clamp(2.5rem,11vw,6rem)] leading-[0.9] transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-[clamp(2.5rem,5vw,6rem)]">
-                  {p.title}
-                </h3>
+                {/* Visual Preview Banner */}
+                <div className="my-6">
+                  <Link to={p.link as any} className="block overflow-hidden border border-hairline/30">
+                    <Visual project={p} />
+                  </Link>
+                </div>
 
-                <p className="reveal mt-8 max-w-2xl text-base leading-relaxed text-foreground/90 md:text-lg">
+                {/* Card Title & Description */}
+                <Link to={p.link as any} className="block">
+                  <h3 className="display text-3xl md:text-4xl leading-tight transition-colors duration-300 group-hover:text-accent">
+                    {p.title}
+                  </h3>
+                </Link>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground/90 line-clamp-3">
                   {p.description}
                 </p>
+              </div>
 
-                <div className="mt-12 grid gap-10 border-t pt-8 md:grid-cols-2">
-                  <div className="reveal">
-                    <p className="label mb-3 text-accent">Role</p>
-                    <p className="font-mono text-[0.7rem] tracking-[0.16em] uppercase">{p.role}</p>
-                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.context}</p>
-                  </div>
-                  <div className="reveal" style={{ ["--d" as string]: "120ms" }}>
-                    <p className="label mb-3 text-accent">Stack</p>
-                    <ul className="flex flex-col gap-2">
-                      {p.stack.map((s) => (
-                        <li
-                          key={s}
-                          className="font-mono text-[0.7rem] tracking-[0.16em] uppercase text-muted-foreground"
-                        >
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              {/* Card Footer: Tech Stack & Link */}
+              <div className="mt-8 pt-6 border-t border-hairline/30">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {p.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-background/80 px-2.5 py-1 border border-hairline/20"
+                    >
+                      {s}
+                    </span>
+                  ))}
                 </div>
 
-                <span className="mt-12 inline-flex w-fit items-center gap-3 border-b border-hairline pb-2 font-mono text-[0.7rem] tracking-[0.24em] uppercase transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
-                  View case study
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Link
+                  to={p.link as any}
+                  className="inline-flex items-center gap-3 font-label text-[0.85rem] tracking-[0.06em] uppercase text-foreground transition-colors duration-300 group-hover:text-accent"
+                >
+                  <span>VIEW CASE STUDY</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">
                     →
                   </span>
-                </span>
+                </Link>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

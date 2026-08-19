@@ -14,6 +14,7 @@
   --font-display: "Anton", "Bebas Neue", sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-label: "Bebas Neue", "Anton", sans-serif;
 
   --radius-none: 0px;
 }
@@ -47,9 +48,9 @@ body {
 /* ---------- utilities ---------- */
 
 @utility label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-family: var(--font-label);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
@@ -70,8 +71,8 @@ body {
 }
 
 @utility pad-section {
-  padding-top: clamp(5rem, 10vw, 10rem);
-  padding-bottom: clamp(5rem, 10vw, 10rem);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 @utility grain {
@@ -168,6 +169,59 @@ body {
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
   animation: scanline 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s 1 both;
 }
+
+/* Glass Card Styling */
+.glass-card {
+  width: 100%;
+  min-height: 360px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+
 
 @keyframes loadline {
   from {

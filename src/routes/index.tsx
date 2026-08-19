@@ -5,10 +5,9 @@ import { Preloader } from "@/components/site/Preloader";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Experience } from "@/components/site/Experience";
-import { DataInterlude } from "@/components/site/DataInterlude";
+import { Toolkit as Skills } from "@/components/site/Toolkit";
 import { Work } from "@/components/site/Work";
-import { Interlude } from "@/components/site/Interlude";
-import { Toolkit } from "@/components/site/Toolkit";
+import { Certifications } from "@/components/site/Certifications";
 import { Contact, Footer } from "@/components/site/Contact";
 import { useRevealObserver } from "@/components/site/reveal";
 import hero from "@/assets/hero-portrait.png";
@@ -50,10 +49,9 @@ function Index() {
       <Nav />
       <Hero ready={ready} />
       <Experience />
-      <DataInterlude />
+      <Skills />
       <Work />
-      <Interlude />
-      <Toolkit />
+      <Certifications />
       <Contact />
       <Footer />
     </main>

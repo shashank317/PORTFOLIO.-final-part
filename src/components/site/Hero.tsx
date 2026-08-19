@@ -87,22 +87,22 @@ export function Hero({ ready }: { ready: boolean }) {
           <div className="flex flex-wrap items-center gap-6 md:gap-8">
             <a
               href="#work"
-              className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-mono text-[0.7rem] tracking-[0.24em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
+              className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-label text-[0.85rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
             >
               <span>View selected work</span>
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
-            <span className="label text-[0.68rem] tracking-[0.22em]">
+            <span className="label text-[0.78rem] tracking-[0.04em]">
               Based in Bengaluru, India
             </span>
           </div>
 
           {/* Right Section Label & Scroll Prompt */}
           <div className="flex items-center gap-12 md:gap-24">
-            <span className={cls("fade label text-[0.68rem] tracking-[0.22em]")} style={{ ["--d" as string]: "900ms" }}>
+            <span className={cls("fade label text-[0.78rem] tracking-[0.04em]")} style={{ ["--d" as string]: "900ms" }}>
               00 / Intro
             </span>
-            <span className={cls("fade label text-[0.68rem] tracking-[0.22em]")} style={{ ["--d" as string]: "980ms" }}>
+            <span className={cls("fade label text-[0.78rem] tracking-[0.04em]")} style={{ ["--d" as string]: "980ms" }}>
               Scroll ↓
             </span>
           </div>

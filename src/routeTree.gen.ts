@@ -10,33 +10,103 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as ProjectsAiResumeEnhancerRouteImport } from './routes/projects/ai-resume-enhancer'
+import { Route as ProjectsTeamsyncRouteImport } from './routes/projects/teamsync'
+import { Route as ProjectsWhatsappGitaAiRouteImport } from './routes/projects/whatsapp-gita-ai'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsAiResumeEnhancerRoute =
+  ProjectsAiResumeEnhancerRouteImport.update({
+    id: '/projects/ai-resume-enhancer',
+    path: '/projects/ai-resume-enhancer',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsTeamsyncRoute = ProjectsTeamsyncRouteImport.update({
+  id: '/projects/teamsync',
+  path: '/projects/teamsync',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsWhatsappGitaAiRoute = ProjectsWhatsappGitaAiRouteImport.update({
+  id: '/projects/whatsapp-gita-ai',
+  path: '/projects/whatsapp-gita-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/experience': typeof ExperienceRoute
+  '/projects/ai-resume-enhancer': typeof ProjectsAiResumeEnhancerRoute
+  '/projects/teamsync': typeof ProjectsTeamsyncRoute
+  '/projects/whatsapp-gita-ai': typeof ProjectsWhatsappGitaAiRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/experience': typeof ExperienceRoute
+  '/projects/ai-resume-enhancer': typeof ProjectsAiResumeEnhancerRoute
+  '/projects/teamsync': typeof ProjectsTeamsyncRoute
+  '/projects/whatsapp-gita-ai': typeof ProjectsWhatsappGitaAiRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/experience': typeof ExperienceRoute
+  '/projects/ai-resume-enhancer': typeof ProjectsAiResumeEnhancerRoute
+  '/projects/teamsync': typeof ProjectsTeamsyncRoute
+  '/projects/whatsapp-gita-ai': typeof ProjectsWhatsappGitaAiRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/experience'
+    | '/projects/ai-resume-enhancer'
+    | '/projects/teamsync'
+    | '/projects/whatsapp-gita-ai'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/experience'
+    | '/projects/ai-resume-enhancer'
+    | '/projects/teamsync'
+    | '/projects/whatsapp-gita-ai'
+    | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/experience'
+    | '/projects/ai-resume-enhancer'
+    | '/projects/teamsync'
+    | '/projects/whatsapp-gita-ai'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExperienceRoute: typeof ExperienceRoute
+  ProjectsAiResumeEnhancerRoute: typeof ProjectsAiResumeEnhancerRoute
+  ProjectsTeamsyncRoute: typeof ProjectsTeamsyncRoute
+  ProjectsWhatsappGitaAiRoute: typeof ProjectsWhatsappGitaAiRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +118,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/ai-resume-enhancer': {
+      id: '/projects/ai-resume-enhancer'
+      path: '/projects/ai-resume-enhancer'
+      fullPath: '/projects/ai-resume-enhancer'
+      preLoaderRoute: typeof ProjectsAiResumeEnhancerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/teamsync': {
+      id: '/projects/teamsync'
+      path: '/projects/teamsync'
+      fullPath: '/projects/teamsync'
+      preLoaderRoute: typeof ProjectsTeamsyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/whatsapp-gita-ai': {
+      id: '/projects/whatsapp-gita-ai'
+      path: '/projects/whatsapp-gita-ai'
+      fullPath: '/projects/whatsapp-gita-ai'
+      preLoaderRoute: typeof ProjectsWhatsappGitaAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExperienceRoute: ExperienceRoute,
+  ProjectsAiResumeEnhancerRoute: ProjectsAiResumeEnhancerRoute,
+  ProjectsTeamsyncRoute: ProjectsTeamsyncRoute,
+  ProjectsWhatsappGitaAiRoute: ProjectsWhatsappGitaAiRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
