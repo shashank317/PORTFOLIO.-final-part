@@ -1,4 +1,4 @@
-import { SectionHead } from "./SectionHead";
+import { SectionHead } from "@/components/common/SectionHead";
 
 type Certification = {
   id: string;

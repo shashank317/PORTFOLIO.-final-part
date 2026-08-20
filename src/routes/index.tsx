@@ -1,15 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 
-import { Preloader } from "@/components/site/Preloader";
-import { Nav } from "@/components/site/Nav";
-import { Hero } from "@/components/site/Hero";
-import { Experience } from "@/components/site/Experience";
-import { Toolkit as Skills } from "@/components/site/Toolkit";
-import { Work } from "@/components/site/Work";
-import { Certifications } from "@/components/site/Certifications";
-import { Contact, Footer } from "@/components/site/Contact";
-import { useRevealObserver } from "@/components/site/reveal";
+import { Preloader } from "@/components/layout/Preloader";
+import { Nav } from "@/components/layout/Nav";
+import { Hero } from "@/features/home/components/Hero";
+import { Experience } from "@/features/home/components/Experience";
+import { Skills } from "@/features/home/components/Skills";
+import { Projects } from "@/features/home/components/Projects";
+import { Certifications } from "@/features/home/components/Certifications";
+import { Contact } from "@/features/home/components/Contact";
+import { Footer } from "@/components/layout/Footer";
+import { useRevealObserver } from "@/lib/reveal";
 import hero from "@/assets/hero-portrait.png";
 
 const HERO_OG = `https://id-preview--6d4c6814-a19c-4e43-8eb3-e7529e8676a5.lovable.app${hero}`;
@@ -50,7 +51,7 @@ function Index() {
       <Hero ready={ready} />
       <Experience />
       <Skills />
-      <Work />
+      <Projects />
       <Certifications />
       <Contact />
       <Footer />

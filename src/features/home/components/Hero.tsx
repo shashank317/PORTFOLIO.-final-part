@@ -1,6 +1,6 @@
 import hero from "@/assets/hero-portrait.png";
-import SpecularButton from "./SpecularButton";
-import { useParallax } from "./reveal";
+import SpecularButton from "@/components/common/SpecularButton";
+import { useParallax } from "@/lib/reveal";
 
 export function Hero({ ready }: { ready: boolean }) {
   const { ref, p } = useParallax<HTMLElement>();

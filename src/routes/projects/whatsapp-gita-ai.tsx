@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Contact";
-import { SectionHead } from "@/components/site/SectionHead";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { SectionHead } from "@/components/common/SectionHead";
 
 export const Route = createFileRoute("/projects/whatsapp-gita-ai")({
   head: () => ({

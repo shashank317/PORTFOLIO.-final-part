@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Contact";
-import { Flow, SectionHead, Tags } from "@/components/site/SectionHead";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { Flow, SectionHead, Tags } from "@/components/common/SectionHead";
 import particlesVideo from "@/assets/Glowing_particles_.mp4";
 
 export const Route = createFileRoute("/experience")({

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import SpecularButton from "./SpecularButton";
-import { SectionHead } from "./SectionHead";
+import SpecularButton from "@/components/common/SpecularButton";
+import { SectionHead } from "@/components/common/SectionHead";
 import particlesVideo from "@/assets/Glowing_particles_.mp4";
 
 export function Experience() {

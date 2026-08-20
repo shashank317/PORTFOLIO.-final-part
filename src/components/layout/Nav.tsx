@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PillNav from "./PillNav";
+import PillNav from "@/components/common/PillNav";
 
 const LINKS = [
   { label: "Experience", href: "/#experience" },

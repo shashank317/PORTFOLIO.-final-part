@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Contact";
-import { SectionHead } from "@/components/site/SectionHead";
-import { PROJECTS } from "@/components/site/Work";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { SectionHead } from "@/components/common/SectionHead";
+import { PROJECTS } from "@/features/projects/data/projects";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({

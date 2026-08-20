@@ -1,4 +1,4 @@
-import { SectionHead } from "./SectionHead";
+import { SectionHead } from "@/components/common/SectionHead";
 import capPortrait from "@/assets/cap-portrait.png";
 
 const GROUPS = [
@@ -20,7 +20,7 @@ const GROUPS = [
   { title: "Exploring", count: "04", items: ["RAG", "Local LLMs", "AI Agents", "MCP"] },
 ];
 
-export function Toolkit() {
+export function Skills() {
   return (
     <section id="skills" className="relative pad-section overflow-x-clip">
       {/* Fixed Background Cap Portrait Asset */}
