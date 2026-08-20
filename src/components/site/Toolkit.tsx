@@ -45,10 +45,7 @@ export function Toolkit() {
           <SectionHead number="02" label="Skills" />
           <h2 className="display mt-6 md:mt-12 text-[clamp(3.5rem,14vw,9rem)] leading-none md:text-[clamp(4.5rem,8vw,9rem)]">
             <span className="mask">
-              <span>Technical</span>
-            </span>
-            <span className="mask" style={{ ["--d" as string]: "120ms" }}>
-              <span>Capabilities.</span>
+              <span>Technical Capabilities.</span>
             </span>
           </h2>
         </div>

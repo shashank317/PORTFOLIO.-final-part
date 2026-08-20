@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import SpecularButton from "./SpecularButton";
 import { SectionHead } from "./SectionHead";
 import particlesVideo from "@/assets/Glowing_particles_.mp4";
 
@@ -56,15 +57,9 @@ export function Experience() {
 
             {/* Dedicated page navigation button */}
             <div className="mt-10 flex items-center gap-6">
-              <Link
-                to="/experience"
-                className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-label text-[0.85rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
-              >
-                <span>EXPLORE EXPERIENCE</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+              <SpecularButton as="a" href="/experience" size="md">
+                EXPLORE EXPERIENCE
+              </SpecularButton>
             </div>
           </div>
         </div>

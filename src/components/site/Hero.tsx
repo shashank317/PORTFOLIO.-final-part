@@ -1,4 +1,5 @@
 import hero from "@/assets/hero-portrait.png";
+import SpecularButton from "./SpecularButton";
 import { useParallax } from "./reveal";
 
 export function Hero({ ready }: { ready: boolean }) {
@@ -85,13 +86,9 @@ export function Hero({ ready }: { ready: boolean }) {
         >
           {/* Left Actions & Location */}
           <div className="flex flex-wrap items-center gap-6 md:gap-8">
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-label text-[0.85rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
-            >
-              <span>View selected work</span>
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
+            <SpecularButton as="a" href="/Shashank_Resume.pdf" target="_blank" size="md">
+              DOWNLOAD CV
+            </SpecularButton>
             <span className="label text-[0.78rem] tracking-[0.04em]">
               Based in Bengaluru, India
             </span>

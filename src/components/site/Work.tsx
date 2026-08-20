@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import doubleExposure from "@/assets/double-exposure.png";
 import cap from "@/assets/cap-portrait.png";
 import { SectionHead } from "./SectionHead";
+import SpecularButton from "./SpecularButton";
 
 export type Project = {
   id: string;
@@ -134,19 +135,12 @@ export function Work() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-12 mb-16">
           <h2 className="display text-[clamp(3.5rem,18vw,9rem)] leading-[0.84] md:text-[clamp(4.5rem,9vw,9rem)]">
             <span className="mask">
-              <span>Things</span>
-            </span>
-            <span className="mask" style={{ ["--d" as string]: "120ms" }}>
-              <span>I built.</span>
+              <span>Things I built.</span>
             </span>
           </h2>
-          <Link
-            to="/projects"
-            className="group inline-flex items-center gap-3 border-b border-foreground pb-1 font-label text-[0.85rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent w-fit mb-2"
-          >
-            <span>EXPLORE ALL PROJECTS</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </Link>
+          <SpecularButton as="a" href="/projects" size="md">
+            EXPLORE ALL PROJECTS
+          </SpecularButton>
         </div>
 
         {/* High-End Interactive 3-Column Card Grid */}

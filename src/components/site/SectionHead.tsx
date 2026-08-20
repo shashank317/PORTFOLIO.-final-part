@@ -10,7 +10,7 @@ export function SectionHead({
   return (
     <div className={`flex items-baseline gap-6 ${className}`}>
       <span className="label text-foreground">
-        {number} / {label}
+        
       </span>
       <span className="draw rule flex-1" />
     </div>
