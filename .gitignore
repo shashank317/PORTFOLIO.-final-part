@@ -30,3 +30,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.agent
+.agents
+.claude
+.cursor
+.gemini
+.grok
+.kiro
+.opencode
+.codex
