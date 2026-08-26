@@ -53,8 +53,8 @@ export function Skills() {
         {/* Skill Cards Grid (1-Column on Mobile, 3-Column on Desktop) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-x-8 md:items-start">
           {GROUPS.map((g, gi) => (
-            <div 
-              key={g.title} 
+            <div
+              key={g.title}
               className="glass-card col-span-1 md:col-span-4 p-6 md:p-8 transition-all duration-500 hover:border-accent/50"
             >
               <div className="flex items-baseline justify-between border-b border-hairline/40 pb-4">
