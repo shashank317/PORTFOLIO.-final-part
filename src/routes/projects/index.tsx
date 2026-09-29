@@ -168,7 +168,11 @@ function ProjectsIndexPage() {
                     </span>
                   </div>
 
-                  <Link to={p.link as any} className="block mt-6">
+                  <Link
+                    to={p.link as any}
+                    onClick={() => triggerHaptic("light")}
+                    className="block mt-6"
+                  >
                     <h3 className="display text-3xl md:text-4xl leading-tight tracking-[0.03em] transition-colors duration-300 group-hover:text-accent">
                       {p.title}
                     </h3>
@@ -197,6 +201,7 @@ function ProjectsIndexPage() {
 
                   <Link
                     to={p.link as any}
+                    onClick={() => triggerHaptic("light")}
                     className="inline-flex items-center gap-3 font-label text-[0.85rem] tracking-[0.06em] uppercase text-foreground transition-colors duration-300 group-hover:text-accent"
                   >
                     <span>VIEW CASE STUDY</span>
@@ -204,6 +209,7 @@ function ProjectsIndexPage() {
                       →
                     </span>
                   </Link>
+
                 </div>
               </article>
             ))}

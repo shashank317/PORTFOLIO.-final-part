@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { triggerHaptic } from "../lib/haptics";
 
 function NotFoundComponent() {
   return (
@@ -24,6 +25,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
+            onClick={() => triggerHaptic("light")}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home
@@ -53,6 +55,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
+              triggerHaptic("light");
               router.invalidate();
               reset();
             }}
@@ -62,6 +65,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           </button>
           <a
             href="/"
+            onClick={() => triggerHaptic("light")}
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             Go home

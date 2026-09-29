@@ -251,7 +251,10 @@ const SpecularButton = ({
       type={as === 'button' ? type : undefined}
       href={href}
       target={target}
-      disabled={disabled}
+      onPointerDown={(e: any) => {
+        triggerHaptic("light");
+        if ((props as any).onPointerDown) (props as any).onPointerDown(e);
+      }}
       onClick={(e: any) => {
         triggerHaptic("light");
         if (onClick) onClick(e);

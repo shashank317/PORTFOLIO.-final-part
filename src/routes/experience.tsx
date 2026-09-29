@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Flow, SectionHead, Tags } from "@/components/common/SectionHead";
+import { triggerHaptic } from "@/lib/haptics";
 import particlesVideo from "@/assets/Glowing_particles_.mp4";
 
 export const Route = createFileRoute("/experience")({
@@ -108,6 +109,7 @@ function ExperiencePage() {
         <article className="pt-36 pb-24 mx-auto w-full max-w-[1600px] px-6 md:px-12 flex-1">
           <Link
             to="/"
+            onClick={() => triggerHaptic("light")}
             className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
           >
             <span>← BACK TO HOME</span>

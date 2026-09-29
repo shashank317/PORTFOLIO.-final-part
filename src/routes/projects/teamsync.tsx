@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { SectionHead } from "@/components/common/SectionHead";
+import { triggerHaptic } from "@/lib/haptics";
 
 export const Route = createFileRoute("/projects/teamsync")({
   head: () => ({
@@ -26,6 +27,7 @@ function TeamSyncPage() {
         <Link
           to="/"
           hash="work"
+          onClick={() => triggerHaptic("light")}
           className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
         >
           <span>← BACK TO WORK</span>

@@ -1,9 +1,18 @@
 export type HapticFeedbackType = "light" | "medium" | "heavy" | "open" | "close" | "selection";
 
+let lastHapticTime = 0;
+
 export function triggerHaptic(type: HapticFeedbackType | number | number[] = "light"): void {
   if (typeof window === "undefined" || !("vibrate" in navigator)) {
     return;
   }
+
+  const now = Date.now();
+  // Prevent duplicate double vibrations from rapid pointerdown + click on mobile
+  if (now - lastHapticTime < 60) {
+    return;
+  }
+  lastHapticTime = now;
 
   try {
     if (typeof type === "number" || Array.isArray(type)) {
