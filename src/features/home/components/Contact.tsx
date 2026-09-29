@@ -1,5 +1,6 @@
 import { SectionHead } from "@/components/common/SectionHead";
 import lightBar from "@/assets/light-bar.png";
+import { triggerHaptic } from "@/lib/haptics";
 
 const LINKEDIN_URL = "https://www.linkedin.com/";
 const GITHUB_URL = "https://github.com/";
@@ -9,6 +10,7 @@ const LINKS = [
   { label: "LinkedIn", href: LINKEDIN_URL },
   { label: "GitHub", href: GITHUB_URL },
 ];
+
 
 export function Contact() {
   return (
@@ -57,6 +59,7 @@ export function Contact() {
                     href={l.href}
                     target={l.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noreferrer"
+                    onClick={() => triggerHaptic("light")}
                     className="group flex items-center justify-between py-4 font-label text-[0.88rem] tracking-[0.06em] uppercase transition-colors duration-300 hover:text-accent"
                   >
                     {l.label}

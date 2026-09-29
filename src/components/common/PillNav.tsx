@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { gsap } from 'gsap';
+import { triggerHaptic } from '@/lib/haptics';
 import './PillNav.css';
 
 export interface NavItem {
@@ -220,8 +221,10 @@ const PillNav = ({
       }
     }
 
+    triggerHaptic(isMobileMenuOpen ? "close" : "open");
     onMobileMenuClick?.();
   };
+
 
   const isExternalLink = (href: string) =>
     href.startsWith('http://') ||
@@ -248,6 +251,7 @@ const PillNav = ({
             className="pill-logo"
             to={items[0].href}
             aria-label="Home"
+            onClick={() => triggerHaptic("light")}
             onMouseEnter={handleLogoEnter}
             role="menuitem"
             ref={(el: any) => {
@@ -261,6 +265,7 @@ const PillNav = ({
             className="pill-logo"
             href={items?.[0]?.href || '#'}
             aria-label="Home"
+            onClick={() => triggerHaptic("light")}
             onMouseEnter={handleLogoEnter}
             ref={(el: any) => {
               logoRef.current = el;
@@ -280,6 +285,7 @@ const PillNav = ({
                     to={item.href}
                     className={`pill${activeHref === item.href ? ' is-active' : ''}`}
                     aria-label={item.ariaLabel || item.label}
+                    onClick={() => triggerHaptic("light")}
                     onMouseEnter={() => handleEnter(i)}
                     onMouseLeave={() => handleLeave(i)}
                   >
@@ -303,6 +309,7 @@ const PillNav = ({
                     href={item.href}
                     className={`pill${activeHref === item.href ? ' is-active' : ''}`}
                     aria-label={item.ariaLabel || item.label}
+                    onClick={() => triggerHaptic("light")}
                     onMouseEnter={() => handleEnter(i)}
                     onMouseLeave={() => handleLeave(i)}
                   >
@@ -345,7 +352,10 @@ const PillNav = ({
                 <Link
                   to={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    triggerHaptic("light");
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -353,7 +363,10 @@ const PillNav = ({
                 <a
                   href={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    triggerHaptic("light");
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {item.label}
                 </a>

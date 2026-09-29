@@ -3,6 +3,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { SectionHead } from "@/components/common/SectionHead";
 import { PROJECTS, FEATURED_CASE_STUDIES } from "@/features/projects/data/projects";
+import { triggerHaptic } from "@/lib/haptics";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -26,6 +27,7 @@ function ProjectsIndexPage() {
       <article className="pt-36 pb-24 mx-auto w-full max-w-[1600px] px-6 md:px-12 flex-1">
         <Link
           to="/"
+          onClick={() => triggerHaptic("light")}
           className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
         >
           <span>← BACK TO HOME</span>
@@ -55,7 +57,7 @@ function ProjectsIndexPage() {
             {PROJECTS.map((category, i) => (
               <div
                 key={category.id}
-                className="relative flex flex-col justify-between overflow-hidden border border-hairline/40 bg-surface/40 p-8 md:p-10 backdrop-blur-md"
+                className="glass-card relative flex flex-col justify-between p-8 md:p-10"
                 style={{ ["--d" as string]: `${i * 120}ms` }}
               >
                 <div>
@@ -63,16 +65,16 @@ function ProjectsIndexPage() {
                     <span className="display text-3xl font-light text-accent">
                       {category.number}
                     </span>
-                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-muted-foreground bg-background/60 px-3 py-1 border border-hairline/30">
+                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-foreground/90 bg-elevated/80 px-3 py-1 border border-white/15">
                       {category.role}
                     </span>
                   </div>
 
-                  <h3 className="display text-2xl md:text-3xl leading-tight mt-6 text-foreground">
+                  <h3 className="display text-2xl md:text-3xl leading-tight tracking-[0.03em] mt-6 text-foreground">
                     {category.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground/90">
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-300">
                     {category.description}
                   </p>
 
@@ -87,6 +89,7 @@ function ProjectsIndexPage() {
                               {item.caseStudyUrl && (
                                 <Link
                                   to={item.caseStudyUrl as any}
+                                  onClick={() => triggerHaptic("light")}
                                   className="text-[0.7rem] text-accent hover:underline uppercase tracking-wider"
                                 >
                                   Case Study
@@ -97,6 +100,7 @@ function ProjectsIndexPage() {
                                   href={item.liveUrl}
                                   target="_blank"
                                   rel="noreferrer noopener"
+                                  onClick={() => triggerHaptic("light")}
                                   className="text-[0.7rem] text-muted-foreground hover:text-accent uppercase tracking-wider"
                                 >
                                   Live ↗
@@ -107,6 +111,7 @@ function ProjectsIndexPage() {
                                   href={item.repoUrl}
                                   target="_blank"
                                   rel="noreferrer noopener"
+                                  onClick={() => triggerHaptic("light")}
                                   className="text-[0.7rem] text-muted-foreground hover:text-foreground uppercase tracking-wider"
                                 >
                                   GitHub ↗
@@ -127,7 +132,7 @@ function ProjectsIndexPage() {
                     {category.stack.map((s) => (
                       <span
                         key={s}
-                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-background/80 px-2.5 py-1 border border-hairline/20"
+                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-2.5 py-1 border border-white/15"
                       >
                         {s}
                       </span>
@@ -148,33 +153,33 @@ function ProjectsIndexPage() {
             {FEATURED_CASE_STUDIES.map((p, i) => (
               <article
                 key={p.id}
-                className="group relative flex flex-col justify-between overflow-hidden border border-hairline/40 bg-surface/40 p-8 md:p-10 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
+                className="glass-card group relative flex flex-col justify-between p-8 md:p-10 transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
                 style={{ ["--d" as string]: `${i * 120}ms` }}
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-20 pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between border-b border-hairline/30 pb-5">
                     <span className="display text-3xl font-light text-accent">
                       {p.number}
                     </span>
-                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-muted-foreground bg-background/60 px-3 py-1 border border-hairline/30">
+                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-foreground/90 bg-elevated/80 px-3 py-1 border border-white/15">
                       {p.role}
                     </span>
                   </div>
 
                   <Link to={p.link as any} className="block mt-6">
-                    <h3 className="display text-3xl md:text-4xl leading-tight transition-colors duration-300 group-hover:text-accent">
+                    <h3 className="display text-3xl md:text-4xl leading-tight tracking-[0.03em] transition-colors duration-300 group-hover:text-accent">
                       {p.title}
                     </h3>
                   </Link>
 
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground/90">
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-300">
                     {p.description}
                   </p>
 
                   <div className="mt-6 border-l-2 border-accent/40 pl-4 py-1">
-                    <p className="text-xs leading-relaxed text-muted-foreground">{p.context}</p>
+                    <p className="text-xs leading-relaxed text-zinc-300">{p.context}</p>
                   </div>
                 </div>
 
@@ -183,7 +188,7 @@ function ProjectsIndexPage() {
                     {p.stack.map((s) => (
                       <span
                         key={s}
-                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-background/80 px-2.5 py-1 border border-hairline/20"
+                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-2.5 py-1 border border-white/15"
                       >
                         {s}
                       </span>

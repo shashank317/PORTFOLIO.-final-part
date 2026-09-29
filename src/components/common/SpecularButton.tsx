@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
+import { triggerHaptic } from '@/lib/haptics';
 import './SpecularButton.css';
 
 const PAD = 20;
@@ -251,7 +252,10 @@ const SpecularButton = ({
       href={href}
       target={target}
       disabled={disabled}
-      onClick={onClick}
+      onClick={(e: any) => {
+        triggerHaptic("light");
+        if (onClick) onClick(e);
+      }}
       className={`specular-button specular-button--${size}${className ? ` ${className}` : ''}`}
       style={{
         '--sb-radius': `${radius}px`,

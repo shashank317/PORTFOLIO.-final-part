@@ -1,5 +1,8 @@
 import doubleExposure from "@/assets/double-exposure.png";
 import cap from "@/assets/cap-portrait.png";
+import aiImage from "@/assets/ai.png";
+import backendImage from "@/assets/backend.png";
+import webDesignImage from "@/assets/web_design.png";
 import type { Project } from "../types";
 
 export const FEATURED_CASE_STUDIES: Project[] = [
@@ -57,8 +60,11 @@ export const PROJECTS: Project[] = [
     context:
       "Production-focused computer vision pipelines and multi-model architectures. Built to process structured engineering assets, visual recognition tasks, and natural language sentiment.",
     stack: ["Python", "FastAPI", "TensorFlow", "OpenCV", "FAISS", "NLP"],
-    visual: "architecture",
+    image: aiImage,
+    alt: "AI & Computer Vision",
+    visual: "image",
     link: "/projects",
+
     items: [
       {
         title: "CAD Drawing Reviewer (Flagship)",
@@ -116,7 +122,9 @@ export const PROJECTS: Project[] = [
     context:
       "Backend systems built with Python, FastAPI, and Flask. Implements resilient API layers, external service integrations, and transactional database storage.",
     stack: ["Python", "FastAPI", "Flask", "SQLite", "Firebase", "REST APIs"],
-    visual: "architecture",
+    image: backendImage,
+    alt: "Backend Engineering",
+    visual: "image",
     link: "/projects",
     items: [
       {
@@ -154,9 +162,14 @@ export const PROJECTS: Project[] = [
     context:
       "Explorations in rapid prototyping and full-stack web interfaces using AI agents. Repositories and live demonstrations will be populated soon.",
     stack: ["TypeScript", "React", "Tailwind CSS", "AI Agents"],
-    visual: "waveform",
+    image: webDesignImage,
+    alt: "Web Design with AI Agents",
+    visual: "image",
     link: "/projects",
     items: [],
   },
 ];
+
+
+
 

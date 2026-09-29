@@ -1,10 +1,11 @@
 import { SectionHead } from "@/components/common/SectionHead";
 import capPortrait from "@/assets/cap-portrait.png";
+import { triggerHaptic } from "@/lib/haptics";
 
 const GROUPS = [
   {
     title: "Built With",
-    count: "08",
+    count: "09",
     items: [
       "Python",
       "FastAPI",
@@ -14,10 +15,11 @@ const GROUPS = [
       "JavaScript",
       "Git",
       "Computer Vision",
+      "RAG",
     ],
   },
   { title: "Working Knowledge", count: "03", items: ["Docker", "AWS", "CI/CD"] },
-  { title: "Exploring", count: "04", items: ["RAG", "Local LLMs", "AI Agents", "MCP"] },
+  { title: "Exploring", count: "03", items: ["Local LLMs", "AI Agents", "MCP"] },
 ];
 
 export function Skills() {
@@ -65,15 +67,18 @@ export function Skills() {
                 {g.items.map((t, i) => (
                   <li
                     key={t}
-                    className="reveal group flex items-baseline justify-between border-b border-hairline/20 py-3.5 md:py-4 transition-colors duration-300 hover:border-hairline"
+                    onClick={() => triggerHaptic("light")}
+                    className="reveal group flex items-baseline justify-between border-b border-hairline/20 py-3.5 md:py-4 transition-colors duration-300 hover:border-hairline cursor-pointer"
                     style={{ ["--d" as string]: `${gi * 80 + i * 70}ms` }}
                   >
                     <span className="text-sm tracking-wide transition-colors duration-300 group-hover:text-accent">
                       {t}
                     </span>
-                    <span className="font-mono text-[0.6rem] text-muted-foreground opacity-70 md:opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      {`${g.count.slice(-1)}.${String(i + 1).padStart(2, "0")}`}
-                    </span>
+                    {t !== "Docker" && (
+                      <span className="font-mono text-[0.6rem] text-muted-foreground opacity-70 md:opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        {`0${gi + 1}.${String(i + 1).padStart(2, "0")}`}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>

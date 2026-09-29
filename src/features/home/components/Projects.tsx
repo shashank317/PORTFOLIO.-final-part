@@ -7,6 +7,7 @@ import { PROJECTS } from "../../projects/data/projects";
 import { Visual } from "./Visual";
 import projBackground from "@/assets/skills-background.jpeg";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { triggerHaptic } from "@/lib/haptics";
 import type { Project } from "../../projects/types";
 
 export const CloseIcon = () => {
@@ -41,6 +42,7 @@ export function Projects() {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
+        triggerHaptic("close");
         setActive(null);
       }
     }
@@ -55,7 +57,12 @@ export function Projects() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
-  useOutsideClick(ref, () => setActive(null));
+  useOutsideClick(ref, () => {
+    if (active) {
+      triggerHaptic("close");
+      setActive(null);
+    }
+  });
 
   return (
     <>
@@ -78,33 +85,40 @@ export function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.05 } }}
-              className="flex absolute top-6 right-6 items-center justify-center bg-surface border border-hairline/40 hover:border-accent transition-colors rounded-full h-10 w-10 z-10 cursor-pointer"
-              onClick={() => setActive(null)}
+              className="flex absolute top-6 right-6 items-center justify-center bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 hover:border-accent transition-colors rounded-full h-10 w-10 z-20 cursor-pointer shadow-lg"
+              onClick={() => {
+                triggerHaptic("close");
+                setActive(null);
+              }}
             >
               <CloseIcon />
             </motion.button>
             <motion.div
               layoutId={`card-${active.id}-${id}`}
               ref={ref}
-              className="w-full max-w-[850px] h-full md:h-fit md:max-h-[90vh] flex flex-col bg-surface/95 backdrop-blur-2xl border border-hairline/40 md:rounded-2xl overflow-hidden shadow-2xl"
+              className="w-full max-w-[850px] h-full md:h-fit md:max-h-[90vh] flex flex-col bg-surface/95 backdrop-blur-2xl border border-white/25 rounded-[12px] overflow-hidden shadow-2xl relative"
             >
-              <motion.div layoutId={`image-${active.id}-${id}`} className="relative h-48 md:h-64 overflow-hidden border-b border-hairline/40 w-full shrink-0">
-                 <Visual project={active} />
-                 {/* Dark gradient overlay for modal header */}
-                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+              {/* Top & Left highlight lines matching glass-card */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-white/80 via-transparent to-white/30 pointer-events-none z-10" />
+
+              <motion.div layoutId={`image-${active.id}-${id}`} className="relative w-full aspect-[16/9] max-h-[380px] overflow-hidden border-b border-white/15 shrink-0 bg-surface/60">
+                 <Visual project={active} className="relative h-full w-full overflow-hidden" />
+                 {/* Soft bottom edge gradient for modal header */}
+                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface via-surface/30 to-transparent pointer-events-none" />
               </motion.div>
 
               <div className="flex flex-col flex-1 overflow-auto hide-scrollbar">
-                <div className="flex flex-col justify-between items-start p-6 md:p-10 gap-4 border-b border-hairline/20">
+                <div className="flex flex-col justify-between items-start p-6 md:p-10 gap-4 border-b border-white/10">
                   <motion.h3
                     layoutId={`title-${active.id}-${id}`}
-                    className="display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-none text-foreground"
+                    className="display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-none tracking-[0.03em] text-foreground"
                   >
                     {active.title}
                   </motion.h3>
                   <motion.p
                     layoutId={`description-${active.id}-${id}`}
-                    className="text-muted-foreground text-[clamp(0.95rem,1.3vw,1.1rem)] leading-relaxed max-w-2xl"
+                    className="text-zinc-300 text-[clamp(0.95rem,1.3vw,1.1rem)] leading-relaxed max-w-2xl"
                   >
                     {active.description}
                   </motion.p>
@@ -122,7 +136,7 @@ export function Projects() {
                       <p className="font-sans font-medium text-foreground">Focus: <span className="font-normal text-muted-foreground">{active.role}</span></p>
                     </div>
                     
-                    <p className="max-w-2xl text-muted-foreground text-sm leading-relaxed">{active.context}</p>
+                    <p className="max-w-2xl text-zinc-300 text-sm leading-relaxed">{active.context}</p>
                     
                     <div>
                       <p className="font-label text-[0.8rem] tracking-wider uppercase mb-3 text-accent">Key Technologies</p>
@@ -130,7 +144,7 @@ export function Projects() {
                         {active.stack.map((s) => (
                           <span
                             key={s}
-                            className="font-sans text-[0.7rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-elevated px-3 py-1.5 border border-hairline/20"
+                            className="font-sans text-[0.7rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-3 py-1.5 border border-white/15"
                           >
                             {s}
                           </span>
@@ -140,7 +154,7 @@ export function Projects() {
                   </motion.div>
 
                   {/* List of Category Items */}
-                  <div className="pt-8 border-t border-hairline/30 w-full">
+                  <div className="pt-8 border-t border-white/10 w-full">
                     <p className="font-label text-[0.8rem] tracking-wider uppercase text-accent mb-6">
                       Projects {active.items && active.items.length > 0 ? `(${active.items.length})` : ""}
                     </p>
@@ -150,20 +164,20 @@ export function Projects() {
                         {active.items.map((item) => (
                           <div
                             key={item.title}
-                            className="flex flex-col gap-3 p-5 md:p-6 bg-background/50 border border-hairline/30 hover:border-hairline transition-colors"
+                            className="flex flex-col gap-3 p-5 md:p-6 bg-background/50 border border-white/10 hover:border-white/25 transition-colors rounded-lg"
                           >
                             <div className="flex flex-wrap items-baseline justify-between gap-2">
                               <h4 className="font-sans text-base md:text-lg font-medium text-foreground">
                                 {item.title}
                               </h4>
                               {item.note && (
-                                <span className="font-sans text-[0.7rem] text-muted-foreground/80 bg-elevated px-2 py-0.5 border border-hairline/20">
+                                <span className="font-sans text-[0.7rem] text-muted-foreground/90 bg-elevated px-2 py-0.5 border border-white/10">
                                   {item.note}
                                 </span>
                               )}
                             </div>
 
-                            <p className="text-sm leading-relaxed text-muted-foreground">
+                            <p className="text-sm leading-relaxed text-zinc-300">
                               {item.description}
                             </p>
 
@@ -177,7 +191,7 @@ export function Projects() {
                               {item.stack.map((tech) => (
                                 <span
                                   key={tech}
-                                  className="font-sans text-[0.65rem] font-medium tracking-[0.02em] uppercase text-foreground/75 bg-elevated px-2 py-0.5 border border-hairline/20"
+                                  className="font-sans text-[0.65rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-elevated px-2 py-0.5 border border-white/10"
                                 >
                                   {tech}
                                 </span>
@@ -185,12 +199,13 @@ export function Projects() {
                             </div>
 
                             {(item.repoUrl || item.liveUrl || item.caseStudyUrl) && (
-                              <div className="flex flex-wrap items-center gap-4 mt-2 pt-3 border-t border-hairline/20">
+                              <div className="flex flex-wrap items-center gap-4 mt-2 pt-3 border-t border-white/10">
                                 {item.repoUrl && (
                                   <a
                                     href={item.repoUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
+                                    onClick={() => triggerHaptic("light")}
                                     className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-foreground hover:text-accent transition-colors"
                                   >
                                     <span>GitHub</span>
@@ -202,6 +217,7 @@ export function Projects() {
                                     href={item.liveUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
+                                    onClick={() => triggerHaptic("light")}
                                     className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-accent hover:text-accent/80 transition-colors"
                                   >
                                     <span>Live</span>
@@ -211,6 +227,7 @@ export function Projects() {
                                 {item.caseStudyUrl && (
                                   <Link
                                     to={item.caseStudyUrl as any}
+                                    onClick={() => triggerHaptic("light")}
                                     className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-foreground hover:text-accent transition-colors"
                                   >
                                     <span>Case study</span>
@@ -223,11 +240,11 @@ export function Projects() {
                         ))}
                       </div>
                     ) : (
-                      <div className="p-8 border border-dashed border-hairline/40 text-center bg-background/30">
+                      <div className="p-8 border border-dashed border-white/20 text-center bg-background/30 rounded-lg">
                         <p className="font-label text-sm uppercase tracking-widest text-muted-foreground">
                           Coming soon
                         </p>
-                        <p className="text-xs text-muted-foreground/70 mt-1">
+                        <p className="text-xs text-muted-foreground/80 mt-1">
                           Projects in this category are currently in development.
                         </p>
                       </div>
@@ -279,12 +296,15 @@ export function Projects() {
               <motion.article
                 layoutId={`card-${p.id}-${id}`}
                 key={p.id}
-                onClick={() => setActive(p)}
-                className="group cursor-pointer relative flex flex-col justify-between overflow-hidden border border-hairline/40 bg-surface/40 p-8 md:p-10 backdrop-blur-[5px] transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
+                onClick={() => {
+                  triggerHaptic("open");
+                  setActive(p);
+                }}
+                className="glass-card group cursor-pointer relative flex flex-col justify-between p-8 md:p-10 transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
                 style={{ ["--d" as string]: `${i * 120}ms` }}
               >
-                {/* Subtle top glow highlight */}
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Subtle top glow highlight on hover */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-20 pointer-events-none" />
 
                 <div>
                   {/* Header Row: Project Number & Category Badge */}
@@ -292,13 +312,13 @@ export function Projects() {
                     <span className="display text-3xl font-light text-accent">
                       {p.number}
                     </span>
-                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-muted-foreground bg-background/60 px-3 py-1 border border-hairline/30">
+                    <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-foreground/90 bg-elevated/80 px-3 py-1 border border-white/15">
                       {p.role}
                     </span>
                   </div>
 
                   {/* Visual Preview Banner */}
-                  <motion.div layoutId={`image-${p.id}-${id}`} className="my-6 block overflow-hidden border border-hairline/30">
+                  <motion.div layoutId={`image-${p.id}-${id}`} className="my-6 block overflow-hidden border border-white/10 rounded-lg">
                     <Visual project={p} />
                   </motion.div>
 
@@ -306,14 +326,14 @@ export function Projects() {
                   <div className="block">
                     <motion.h3
                       layoutId={`title-${p.id}-${id}`}
-                      className="display text-3xl md:text-4xl leading-tight transition-colors duration-300 group-hover:text-accent"
+                      className="display text-3xl md:text-4xl leading-tight tracking-[0.03em] transition-colors duration-300 group-hover:text-accent"
                     >
                       {p.title}
                     </motion.h3>
                   </div>
                   <motion.p
                     layoutId={`description-${p.id}-${id}`}
-                    className="mt-4 text-sm leading-relaxed text-muted-foreground/90 line-clamp-3"
+                    className="mt-4 text-sm leading-relaxed text-zinc-300 line-clamp-3"
                   >
                     {p.description}
                   </motion.p>
@@ -325,7 +345,7 @@ export function Projects() {
                     {p.stack.map((s) => (
                       <span
                         key={s}
-                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/80 bg-background/80 px-2.5 py-1 border border-hairline/20"
+                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-2.5 py-1 border border-white/15"
                       >
                         {s}
                       </span>
