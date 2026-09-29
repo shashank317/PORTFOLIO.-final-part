@@ -25,13 +25,13 @@ const INITIATIVES = [
     index: "01",
     chapter: "CHAPTER 01 // PARAMETRIC AUTOMATION",
     title: "Parametric CAD Automation",
-    subtitle: "Python & FreeCAD Engineering Pipeline",
-    tags: ["Python", "FreeCAD", "Backend Automation", "Geometry Engine"],
+    subtitle: "Python & FastAPI Engineering Pipeline",
+    tags: ["Python", "FastAPI", "SQLAlchemy", "Pydantic"],
     challenge:
-      "A repetitive CAD workflow required engineers to manually rebuild complex configurable components by hand for every single client variant.",
+      "A repetitive CAD workflow required engineers to manually rebuild components. Manual rework was needed for every single client variant.",
     approach:
-      "I built a parameter-driven backend automation system that ingests engineering specs and programmatically generates 3D CAD models, turning a hours-long manual task into an instant parametric generation.",
-    flow: ["Engineering Inputs", "Validation Engine", "Geometry Generation", "3D CAD Output"],
+      "Automated the design generation process using Python scripts from CAD macros. Built a FastAPI backend with SQLAlchemy and Pydantic validation to handle user inputs and return DXF/PDF files in real-time.",
+    flow: ["API Request", "Pydantic Validation", "Python Macro Execution", "DXF/PDF Output"],
     scan: false,
   },
   {
@@ -39,13 +39,13 @@ const INITIATIVES = [
     index: "02",
     chapter: "CHAPTER 02 // AI DRAWING ANALYSIS",
     title: "AI-Assisted Drawing Review",
-    subtitle: "Computer Vision & LLM Engineering Inspection",
-    tags: ["Python", "Structured Extraction", "Computer Vision", "LLM Analysis"],
+    subtitle: "Vision-Language Models & RAG Inspection",
+    tags: ["Python", "Vision-Language Models", "RAG", "FAISS", "RESTful APIs"],
     challenge:
-      "Reviewing technical engineering drawings requires meticulous precision. Microscopic dimension errors or missing callouts are easily missed by human reviewers.",
+      "Manual review of technical engineering drawings for dimension and annotation extraction was slow and prone to errors.",
     approach:
-      "An experimental AI-assisted pipeline that extracts structured metadata, performs automated visual verification, and highlights potential drawing inconsistencies for instant engineering review.",
-    flow: ["Drawing Ingestion", "Structured Extraction", "Visual Verification", "Flagged Review"],
+      "Developed a vision-language model pipeline to extract dimensions and technical data. Implemented a RAG-based retrieval system (FAISS, sentence-transformers) to ground model outputs in reference documentation, speeding up quality checks.",
+    flow: ["DXF Ingestion", "VLM Extraction", "RAG Validation", "Automated Review"],
     scan: true,
   },
 ];
@@ -131,13 +131,13 @@ function ExperiencePage() {
                 </h1>
 
                 <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <span className="label text-foreground">Graduate Trainee Engineer</span>
-                  <span className="label text-muted-foreground">• Jul 2025 — Jun 2026</span>
+                  <span className="label text-foreground">Graduate Trainee</span>
+                  <span className="label text-muted-foreground">• Jun 2025 — Jun 2026</span>
                 </div>
 
                 <div className="mt-8 border-l-2 border-accent/70 pl-6 py-3 max-w-2xl bg-surface/40 backdrop-blur-sm">
                   <p className="text-[clamp(1.1rem,1.6vw,1.45rem)] leading-relaxed text-foreground/90 font-normal">
-                    Worked on engineering automation workflows using Python, with a focus on reducing repetitive processes and exploring AI-assisted analysis for technical drawings.
+                    Automated CAD design generation using Python and FastAPI. Built vision-language and RAG-based pipelines for dimension extraction and automated document review, reducing part design turnaround time by 5%.
                   </p>
                 </div>
 

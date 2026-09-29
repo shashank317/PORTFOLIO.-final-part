@@ -34,18 +34,18 @@ export const CloseIcon = () => {
 };
 
 export function Projects() {
-  const [active, setActive] = useState<Project | boolean | null>(null);
+  const [active, setActive] = useState<Project | null>(null);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActive(false);
+        setActive(null);
       }
     }
 
-    if (active && typeof active === "object") {
+    if (active) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -60,7 +60,7 @@ export function Projects() {
   return (
     <>
       <AnimatePresence>
-        {active && typeof active === "object" && (
+        {active && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -70,7 +70,7 @@ export function Projects() {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {active && typeof active === "object" ? (
+        {active ? (
           <div className="fixed inset-0 grid place-items-center z-[110] p-4 md:p-8">
             <motion.button
               key={`button-${active.id}-${id}`}
@@ -86,44 +86,31 @@ export function Projects() {
             <motion.div
               layoutId={`card-${active.id}-${id}`}
               ref={ref}
-              className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90vh] flex flex-col bg-surface/95 backdrop-blur-2xl border border-hairline/40 md:rounded-2xl overflow-hidden shadow-2xl"
+              className="w-full max-w-[850px] h-full md:h-fit md:max-h-[90vh] flex flex-col bg-surface/95 backdrop-blur-2xl border border-hairline/40 md:rounded-2xl overflow-hidden shadow-2xl"
             >
-              <motion.div layoutId={`image-${active.id}-${id}`} className="relative h-64 md:h-[400px] overflow-hidden border-b border-hairline/40 w-full shrink-0">
+              <motion.div layoutId={`image-${active.id}-${id}`} className="relative h-48 md:h-64 overflow-hidden border-b border-hairline/40 w-full shrink-0">
                  <Visual project={active} />
                  {/* Dark gradient overlay for modal header */}
                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
               </motion.div>
 
               <div className="flex flex-col flex-1 overflow-auto hide-scrollbar">
-                <div className="flex flex-col justify-between items-start p-6 md:p-10 gap-6 border-b border-hairline/20">
-                  <div>
-                    <motion.h3
-                      layoutId={`title-${active.title}-${id}`}
-                      className="display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-foreground"
-                    >
-                      {active.title}
-                    </motion.h3>
-                    <motion.p
-                      layoutId={`description-${active.description}-${id}`}
-                      className="text-muted-foreground mt-4 text-[clamp(1rem,1.4vw,1.15rem)] leading-relaxed max-w-xl"
-                    >
-                      {active.description}
-                    </motion.p>
-                  </div>
-
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                <div className="flex flex-col justify-between items-start p-6 md:p-10 gap-4 border-b border-hairline/20">
+                  <motion.h3
+                    layoutId={`title-${active.id}-${id}`}
+                    className="display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-none text-foreground"
                   >
-                    <SpecularButton as={Link} href={active.link} size="md">
-                      VIEW FULL CASE STUDY
-                    </SpecularButton>
-                  </motion.div>
+                    {active.title}
+                  </motion.h3>
+                  <motion.p
+                    layoutId={`description-${active.id}-${id}`}
+                    className="text-muted-foreground text-[clamp(0.95rem,1.3vw,1.1rem)] leading-relaxed max-w-2xl"
+                  >
+                    {active.description}
+                  </motion.p>
                 </div>
                 
-                <div className="p-6 md:p-10">
+                <div className="p-6 md:p-10 space-y-8">
                   <motion.div
                     layout
                     initial={{ opacity: 0 }}
@@ -132,13 +119,13 @@ export function Projects() {
                     className="text-muted-foreground/90 text-sm md:text-base leading-relaxed flex flex-col items-start gap-6"
                   >
                     <div className="border-l-2 border-accent/70 pl-4 py-1">
-                      <p className="font-sans font-medium text-foreground">My Role: <span className="font-normal text-muted-foreground">{active.role}</span></p>
+                      <p className="font-sans font-medium text-foreground">Focus: <span className="font-normal text-muted-foreground">{active.role}</span></p>
                     </div>
                     
-                    <p className="max-w-2xl">{active.context}</p>
+                    <p className="max-w-2xl text-muted-foreground text-sm leading-relaxed">{active.context}</p>
                     
-                    <div className="mt-4">
-                      <p className="font-label text-[0.8rem] tracking-wider uppercase mb-4 text-accent">Tech Stack</p>
+                    <div>
+                      <p className="font-label text-[0.8rem] tracking-wider uppercase mb-3 text-accent">Key Technologies</p>
                       <div className="flex flex-wrap gap-2">
                         {active.stack.map((s) => (
                           <span
@@ -151,6 +138,101 @@ export function Projects() {
                       </div>
                     </div>
                   </motion.div>
+
+                  {/* List of Category Items */}
+                  <div className="pt-8 border-t border-hairline/30 w-full">
+                    <p className="font-label text-[0.8rem] tracking-wider uppercase text-accent mb-6">
+                      Projects {active.items && active.items.length > 0 ? `(${active.items.length})` : ""}
+                    </p>
+
+                    {active.items && active.items.length > 0 ? (
+                      <div className="flex flex-col gap-5">
+                        {active.items.map((item) => (
+                          <div
+                            key={item.title}
+                            className="flex flex-col gap-3 p-5 md:p-6 bg-background/50 border border-hairline/30 hover:border-hairline transition-colors"
+                          >
+                            <div className="flex flex-wrap items-baseline justify-between gap-2">
+                              <h4 className="font-sans text-base md:text-lg font-medium text-foreground">
+                                {item.title}
+                              </h4>
+                              {item.note && (
+                                <span className="font-sans text-[0.7rem] text-muted-foreground/80 bg-elevated px-2 py-0.5 border border-hairline/20">
+                                  {item.note}
+                                </span>
+                              )}
+                            </div>
+
+                            <p className="text-sm leading-relaxed text-muted-foreground">
+                              {item.description}
+                            </p>
+
+                            {item.metric && (
+                              <p className="font-sans text-xs text-accent font-medium">
+                                {item.metric}
+                              </p>
+                            )}
+
+                            <div className="flex flex-wrap gap-1.5 mt-1">
+                              {item.stack.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="font-sans text-[0.65rem] font-medium tracking-[0.02em] uppercase text-foreground/75 bg-elevated px-2 py-0.5 border border-hairline/20"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+
+                            {(item.repoUrl || item.liveUrl || item.caseStudyUrl) && (
+                              <div className="flex flex-wrap items-center gap-4 mt-2 pt-3 border-t border-hairline/20">
+                                {item.repoUrl && (
+                                  <a
+                                    href={item.repoUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-foreground hover:text-accent transition-colors"
+                                  >
+                                    <span>GitHub</span>
+                                    <span>↗</span>
+                                  </a>
+                                )}
+                                {item.liveUrl && (
+                                  <a
+                                    href={item.liveUrl}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                    className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-accent hover:text-accent/80 transition-colors"
+                                  >
+                                    <span>Live</span>
+                                    <span>↗</span>
+                                  </a>
+                                )}
+                                {item.caseStudyUrl && (
+                                  <Link
+                                    to={item.caseStudyUrl as any}
+                                    className="inline-flex items-center gap-1 text-xs font-label uppercase tracking-wider text-foreground hover:text-accent transition-colors"
+                                  >
+                                    <span>Case study</span>
+                                    <span>→</span>
+                                  </Link>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="p-8 border border-dashed border-hairline/40 text-center bg-background/30">
+                        <p className="font-label text-sm uppercase tracking-widest text-muted-foreground">
+                          Coming soon
+                        </p>
+                        <p className="text-xs text-muted-foreground/70 mt-1">
+                          Projects in this category are currently in development.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -223,14 +305,14 @@ export function Projects() {
                   {/* Card Title & Description */}
                   <div className="block">
                     <motion.h3
-                      layoutId={`title-${p.title}-${id}`}
+                      layoutId={`title-${p.id}-${id}`}
                       className="display text-3xl md:text-4xl leading-tight transition-colors duration-300 group-hover:text-accent"
                     >
                       {p.title}
                     </motion.h3>
                   </div>
                   <motion.p
-                    layoutId={`description-${p.description}-${id}`}
+                    layoutId={`description-${p.id}-${id}`}
                     className="mt-4 text-sm leading-relaxed text-muted-foreground/90 line-clamp-3"
                   >
                     {p.description}
@@ -253,9 +335,10 @@ export function Projects() {
                   <div
                     className="inline-flex items-center gap-3 font-label text-[0.85rem] tracking-[0.06em] uppercase text-foreground transition-colors duration-300 group-hover:text-accent"
                   >
-                    <span>VIEW CASE STUDY</span>
-                    <span className="transition-transform duration-300 group-hover:translate-x-1.5">
-                      →
+                    <span>
+                      {p.items && p.items.length > 0
+                        ? `${p.items.length} ${p.items.length === 1 ? "project" : "projects"} →`
+                        : "Coming soon"}
                     </span>
                   </div>
                 </div>
@@ -267,3 +350,4 @@ export function Projects() {
     </>
   );
 }
+

@@ -43,15 +43,15 @@ export function Experience() {
               </h2>
 
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                <span className="label text-foreground">Graduate Trainee Engineer</span>
-                <span className="label text-muted-foreground">• Jul 2025 — Jun 2026</span>
+                <span className="label text-foreground">Graduate Trainee</span>
+                <span className="label text-muted-foreground">• Jun 2025 — Jun 2026</span>
               </div>
             </div>
 
             {/* Short intro quote block */}
             <div className="mt-10 border-l-2 border-accent/70 pl-6 py-2 max-w-2xl">
               <p className="text-[clamp(1rem,1.4vw,1.35rem)] leading-relaxed text-foreground/90 font-normal">
-                Worked on engineering automation workflows using Python, with a focus on reducing repetitive processes and exploring AI-assisted analysis for technical drawings.
+                Automated CAD design generation using Python and FastAPI. Built vision-language and RAG-based pipelines for dimension extraction and automated document review, reducing part design turnaround time by 5%.
               </p>
             </div>
 
