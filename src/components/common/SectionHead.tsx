@@ -10,7 +10,7 @@ export function SectionHead({
   return (
     <div className={`flex items-baseline gap-6 ${className}`}>
       <span className="label text-foreground">
-        
+        {number} / {label}
       </span>
       <span className="draw rule flex-1" />
     </div>
@@ -23,11 +23,11 @@ export function Flow({ steps }: { steps: string[] }) {
       {steps.map((s, i) => (
         <li
           key={s}
-          className="reveal flex flex-1 items-center gap-4 border-t py-5 md:flex-col md:items-start md:gap-6 md:border-t md:border-l md:px-5 md:first:border-l-0 md:first:pl-0"
+          className="flex flex-1 items-center gap-4 border-t border-hairline/40 py-5 md:flex-col md:items-start md:gap-6 md:border-t-0 md:border-l md:px-5 md:first:border-l-0 md:first:pl-0"
           style={{ ["--d" as string]: `${i * 110}ms` }}
         >
           <span className="font-label text-[0.75rem] text-accent">{`0${i + 1}`}</span>
-          <span className="font-sans text-[0.72rem] font-medium tracking-[0.04em] uppercase">{s}</span>
+          <span className="font-sans text-[0.72rem] font-medium tracking-[0.04em] uppercase text-foreground">{s}</span>
           <span className="ml-auto text-muted-foreground md:mt-auto md:ml-0">
             {i < steps.length - 1 ? "→" : "■"}
           </span>

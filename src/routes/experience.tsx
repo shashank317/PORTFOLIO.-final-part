@@ -29,7 +29,7 @@ const INITIATIVES = [
     subtitle: "Python & FastAPI Engineering Pipeline",
     tags: ["Python", "FastAPI", "SQLAlchemy", "Pydantic"],
     challenge:
-      "A repetitive CAD workflow required engineers to manually rebuild components. Manual rework was needed for every single client variant.",
+      "A repetitive CAD design workflow depended on manual rework.",
     approach:
       "Automated the design generation process using Python scripts from CAD macros. Built a FastAPI backend with SQLAlchemy and Pydantic validation to handle user inputs and return DXF/PDF files in real-time.",
     flow: ["API Request", "Pydantic Validation", "Python Macro Execution", "DXF/PDF Output"],
@@ -40,13 +40,13 @@ const INITIATIVES = [
     index: "02",
     chapter: "CHAPTER 02 // AI DRAWING ANALYSIS",
     title: "AI-Assisted Drawing Review",
-    subtitle: "Vision-Language Models & RAG Inspection",
+    subtitle: "Hybrid Extraction & RAG Validation",
     tags: ["Python", "Vision-Language Models", "RAG", "FAISS", "RESTful APIs"],
     challenge:
       "Manual review of technical engineering drawings for dimension and annotation extraction was slow and prone to errors.",
     approach:
-      "Developed a vision-language model pipeline to extract dimensions and technical data. Implemented a RAG-based retrieval system (FAISS, sentence-transformers) to ground model outputs in reference documentation, speeding up quality checks.",
-    flow: ["DXF Ingestion", "VLM Extraction", "RAG Validation", "Automated Review"],
+      "Built a hybrid review pipeline: values extracted directly from the DXF are the source of truth, and a vision-language model only fills in dimensions or annotations the text pass missed, so a vision misread can never override an exact DXF value. A RAG layer (FAISS, sentence-transformers) over client-specific design standards grounds the validation and speeds up quality checks.",
+    flow: ["DXF Ingestion", "Text Extraction", "Vision Fallback", "RAG Validation", "Review Output"],
     scan: true,
   },
 ];
@@ -91,7 +91,7 @@ function ExperiencePage() {
       </div>
 
       {/* Floating Scrollytelling HUD Tracker */}
-      <div className="pointer-events-none fixed bottom-8 right-8 z-30 hidden md:flex items-center gap-4 border border-hairline/40 bg-background/80 px-4 py-2 backdrop-blur-md">
+      <div className="glass-card pointer-events-none fixed bottom-8 right-8 z-30 hidden md:flex items-center gap-4 px-5 py-3 !min-h-0 rounded-[12px]">
         <span className="font-label text-[0.82rem] tracking-[0.06em] uppercase text-accent">
           {activeChapter === 0 ? "OVERVIEW // CADMAXX" : INITIATIVES[activeChapter - 1]?.chapter}
         </span>
@@ -137,10 +137,13 @@ function ExperiencePage() {
                   <span className="label text-muted-foreground">• Jun 2025 — Jun 2026</span>
                 </div>
 
-                <div className="mt-8 border-l-2 border-accent/70 pl-6 py-3 max-w-2xl bg-surface/40 backdrop-blur-sm">
-                  <p className="text-[clamp(1.1rem,1.6vw,1.45rem)] leading-relaxed text-foreground/90 font-normal">
-                    Automated CAD design generation using Python and FastAPI. Built vision-language and RAG-based pipelines for dimension extraction and automated document review, reducing part design turnaround time by 5%.
-                  </p>
+                <div className="glass-card mt-8 max-w-2xl rounded-[12px] relative overflow-hidden !min-h-0">
+                  <div className="absolute inset-y-0 left-0 w-[2px] bg-accent/70 z-10" />
+                  <div className="pl-6 py-4 pr-6">
+                    <p className="text-[clamp(1.1rem,1.6vw,1.45rem)] leading-relaxed text-foreground/90 font-normal">
+                      Automated CAD design generation using Python and FastAPI, reducing part design turnaround time by 5%. Built a hybrid text-and-vision pipeline with RAG for automated engineering drawing review.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="mt-10 flex items-center gap-3 font-label text-[0.82rem] tracking-[0.06em] uppercase text-muted-foreground">
@@ -177,13 +180,13 @@ function ExperiencePage() {
                   </header>
 
                   {/* Right Column: Scrollytelling Detail Card */}
-                  <div className="col-span-12 lg:col-span-8 flex flex-col gap-10 border border-hairline/40 bg-surface/60 p-8 md:p-12 backdrop-blur-md shadow-2xl">
+                  <div className="glass-card col-span-12 lg:col-span-8 flex flex-col gap-10 p-8 md:p-12 !min-h-0 relative">
                     <div className="grid gap-8 md:grid-cols-2">
                       <div>
                         <span className="label mb-3 block text-accent font-label text-[0.82rem] tracking-[0.06em] uppercase">
                           The Challenge
                         </span>
-                        <p className="text-sm leading-relaxed text-muted-foreground/90">
+                        <p className="text-sm leading-relaxed text-foreground/70">
                           {item.challenge}
                         </p>
                       </div>
