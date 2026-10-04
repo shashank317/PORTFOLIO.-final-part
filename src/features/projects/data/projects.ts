@@ -2,7 +2,6 @@ import doubleExposure from "@/assets/double-exposure.png";
 import cap from "@/assets/cap-portrait.png";
 import aiImage from "@/assets/ai.png";
 import backendImage from "@/assets/backend.png";
-import webDesignImage from "@/assets/web_design.png";
 import type { Project } from "../types";
 
 export const FEATURED_CASE_STUDIES: Project[] = [
@@ -162,9 +161,7 @@ export const PROJECTS: Project[] = [
     context:
       "Explorations in rapid prototyping and full-stack web interfaces using AI agents. Repositories and live demonstrations will be populated soon.",
     stack: ["TypeScript", "React", "Tailwind CSS", "AI Agents"],
-    image: webDesignImage,
-    alt: "Web Design with AI Agents",
-    visual: "image",
+    visual: "architecture",
     link: "/projects",
     items: [],
   },
