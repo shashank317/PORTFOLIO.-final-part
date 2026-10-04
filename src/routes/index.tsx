@@ -11,29 +11,31 @@ import { Certifications } from "@/features/home/components/Certifications";
 import { Contact } from "@/features/home/components/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { useRevealObserver } from "@/lib/reveal";
-import hero from "@/assets/hero-portrait.png";
 
-const HERO_OG = `https://id-preview--6d4c6814-a19c-4e43-8eb3-e7529e8676a5.lovable.app${hero}`;
+
+const SITE_URL = import.meta.env.VITE_SITE_URL;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Shashank H — Software Engineer / Backend & AI Systems" },
+      { title: "Shashank H, Python backend & AI developer" },
       {
         name: "description",
-        content:
-          "Portfolio of Shashank H, a backend-focused software engineer building APIs, automation, and practical AI integrations with Python.",
+        content: "Shashank H, Python backend & AI developer",
       },
-      { property: "og:title", content: "Shashank H — Software Engineer / Backend & AI Systems" },
+      { property: "og:title", content: "Shashank H, Python backend & AI developer" },
       {
         property: "og:description",
-        content:
-          "Backend systems, automation, and AI-powered products built with Python. Based in Bengaluru, India.",
+        content: "Shashank H, Python backend & AI developer",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: HERO_OG },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: HERO_OG },
+      ...(SITE_URL
+        ? [
+            { property: "og:image", content: `${SITE_URL}/hero-portrait.png` },
+            { name: "twitter:image", content: `${SITE_URL}/hero-portrait.png` },
+          ]
+        : []),
     ],
   }),
   component: Index,

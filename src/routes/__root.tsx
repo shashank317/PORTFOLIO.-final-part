@@ -77,18 +77,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shashank H — Software Engineer" },
+      { title: "Shashank H, Python backend & AI developer" },
       {
         name: "description",
-        content:
-          "Backend systems, automation, and AI-powered products built with Python by Shashank H.",
+        content: "Shashank H, Python backend & AI developer",
       },
       { name: "author", content: "Shashank H" },
-      { property: "og:title", content: "Shashank H — Software Engineer" },
+      { property: "og:title", content: "Shashank H, Python backend & AI developer" },
       {
         property: "og:description",
-        content:
-          "Backend systems, automation, and AI-powered products built with Python by Shashank H.",
+        content: "Shashank H, Python backend & AI developer",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
