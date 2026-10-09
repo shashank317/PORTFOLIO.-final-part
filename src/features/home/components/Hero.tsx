@@ -91,7 +91,13 @@ export function Hero({ ready }: { ready: boolean }) {
         >
           {/* Left Actions & Location */}
           <div className="flex flex-wrap items-center gap-4 md:gap-8">
-            <SpecularButton as="a" href="/Shashank_Resume.pdf" target="_blank" size="md">
+            <SpecularButton
+              as="a"
+              href="https://docs.google.com/document/d/1ZTPpM3ij0V8yuJAXoLKu6bUqwahxGw0uiM90TY-ys54/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              size="md"
+            >
               DOWNLOAD CV
             </SpecularButton>
             <span className="label text-[0.8rem] md:text-[0.78rem] tracking-[0.04em]">

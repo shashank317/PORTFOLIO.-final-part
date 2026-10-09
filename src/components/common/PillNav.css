@@ -170,9 +170,11 @@
   min-width: 44px;
   min-height: 44px;
   border-radius: 50%;
-  background: var(--mobile-menu-btn-bg, #ffffff);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  background: var(--mobile-menu-btn-bg, #141416);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -182,7 +184,7 @@
   padding: 0;
   position: relative;
   touch-action: manipulation;
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 @media (max-width: 768px) {
@@ -192,8 +194,9 @@
 }
 
 .mobile-menu-button:hover {
-  background: var(--mobile-menu-btn-hover-bg, #f4f4f5);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  background: var(--mobile-menu-btn-hover-bg, #1e1e22);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 .mobile-menu-button:active {
@@ -203,7 +206,7 @@
 .hamburger-line {
   width: 16px;
   height: 2px;
-  background: var(--mobile-menu-btn-icon, #111111);
+  background: var(--mobile-menu-btn-icon, #e4e4e7);
   border-radius: 1px;
   transition: all 0.2s ease;
   transform-origin: center;
@@ -214,15 +217,16 @@
   top: 4em;
   right: 0;
   width: 200px;
-  background: var(--mobile-menu-bg, #ffffff);
+  background: var(--mobile-menu-bg, #0d0d10);
   border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 4px 14px rgba(0, 0, 0, 0.4);
   z-index: 998;
   opacity: 0;
   transform-origin: top center;
   visibility: hidden;
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .mobile-menu-list {
@@ -231,16 +235,17 @@
   padding: 8px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
   padding: 12px 16px;
-  color: var(--mobile-menu-text, #111111);
-  background-color: var(--mobile-menu-link-bg, #f4f4f5);
+  color: var(--mobile-menu-text, #d4d4d8);
+  background-color: var(--mobile-menu-link-bg, #1a1a1e);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   border-radius: 50px;
   transition: all 0.2s ease;
@@ -249,7 +254,8 @@
 .mobile-menu-popover .mobile-menu-link:hover,
 .mobile-menu-popover .mobile-menu-link.is-active {
   cursor: pointer;
-  background-color: var(--mobile-menu-hover-bg, #111111);
+  background-color: var(--mobile-menu-hover-bg, #000000);
   color: var(--mobile-menu-hover-text, #ffffff);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
