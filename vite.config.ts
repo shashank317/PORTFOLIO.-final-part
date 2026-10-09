@@ -5,7 +5,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { nitro } from "nitro/vite";
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   return {
     plugins: [
       tailwindcss(),
@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => {
           },
         },
       }),
-      command === "build" ? nitro({ preset: "cloudflare-module" }) : null,
+      nitro(),
       react(),
     ],
     resolve: {
