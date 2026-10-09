@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PillNav from "@/components/common/PillNav";
+import shLogo from "@/assets/sh-logo.png";
 
 const LINKS = [
   { label: "Experience", href: "/#experience" },
@@ -8,8 +9,6 @@ const LINKS = [
   { label: "Certifications", href: "/#certifications" },
   { label: "Contact", href: "/#contact" },
 ];
-
-const SH_LOGO = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="40" fill="%23ffffff">SH</text></svg>`;
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +24,7 @@ export function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-end md:justify-center px-4 pt-[calc(env(safe-area-inset-top,0px)+12px)] md:pt-6 pointer-events-none">
       <div className="pointer-events-auto flex justify-center">
         <PillNav
-          logo={SH_LOGO}
+          logo={shLogo}
           logoAlt="SH Logo"
           items={LINKS}
           className={`backdrop-blur-md rounded-full transition-all duration-500 border ${
