@@ -257,7 +257,7 @@ export function Projects() {
         ) : null}
       </AnimatePresence>
 
-      <section id="work" className="relative pt-16 pb-12">
+      <section id="work" className="relative pt-6 md:pt-16 pb-6 md:pb-12">
         {/* Background Image Setup (Sticky for Scrollytelling effect) */}
         <div className="pointer-events-none absolute inset-0 z-0">
           <div className="sticky top-0 h-[100svh] w-full flex items-center justify-center overflow-hidden">
@@ -276,11 +276,11 @@ export function Projects() {
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 md:px-12">
+        <div className="relative z-10 page-container">
           <SectionHead number="03" label="Selected Work" />
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-12 mb-16">
-            <h2 className="display text-[clamp(3.5rem,18vw,9rem)] leading-[0.84] md:text-[clamp(4.5rem,9vw,9rem)]">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-8 md:mt-12 mb-10 md:mb-16">
+            <h2 className="display text-[clamp(2.7rem,12vw,9rem)] leading-[0.98] md:leading-[0.84] tracking-[-0.01em] md:tracking-[-0.03em]">
               <span className="mask">
                 <span>Things I built.</span>
               </span>
@@ -291,7 +291,7 @@ export function Projects() {
           </div>
 
           {/* High-End Interactive 3-Column Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {PROJECTS.map((p, i) => (
               <motion.article
                 layoutId={`card-${p.id}-${id}`}
@@ -300,7 +300,7 @@ export function Projects() {
                   triggerHaptic("open");
                   setActive(p);
                 }}
-                className="glass-card group cursor-pointer relative flex flex-col justify-between p-8 md:p-10 transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
+                className="glass-card group cursor-pointer relative flex flex-col justify-between p-6 md:p-10 transition-all duration-500 hover:-translate-y-2 hover:border-accent/60 hover:shadow-2xl"
                 style={{ ["--d" as string]: `${i * 120}ms` }}
               >
                 {/* Subtle top glow highlight on hover */}
@@ -308,8 +308,8 @@ export function Projects() {
 
                 <div>
                   {/* Header Row: Project Number & Category Badge */}
-                  <div className="flex items-center justify-between border-b border-hairline/30 pb-5">
-                    <span className="display text-3xl font-light text-accent">
+                  <div className="flex items-center justify-between border-b border-hairline/30 pb-4 md:pb-5">
+                    <span className="display text-2xl md:text-3xl font-light text-accent">
                       {p.number}
                     </span>
                     <span className="font-label text-[0.78rem] tracking-[0.04em] uppercase text-foreground/90 bg-elevated/80 px-3 py-1 border border-white/15">
@@ -318,7 +318,7 @@ export function Projects() {
                   </div>
 
                   {/* Visual Preview Banner */}
-                  <motion.div layoutId={`image-${p.id}-${id}`} className="my-6 block overflow-hidden border border-white/10 rounded-lg">
+                  <motion.div layoutId={`image-${p.id}-${id}`} className="my-5 md:my-6 block overflow-hidden border border-white/10 rounded-lg">
                     <Visual project={p} />
                   </motion.div>
 
@@ -326,26 +326,26 @@ export function Projects() {
                   <div className="block">
                     <motion.h3
                       layoutId={`title-${p.id}-${id}`}
-                      className="display text-3xl md:text-4xl leading-tight tracking-[0.03em] transition-colors duration-300 group-hover:text-accent"
+                      className="display text-2xl md:text-4xl min-h-[2rem] md:min-h-[2.5rem] leading-tight tracking-[0.01em] md:tracking-[0.03em] transition-colors duration-300 group-hover:text-accent"
                     >
                       {p.title}
                     </motion.h3>
                   </div>
                   <motion.p
                     layoutId={`description-${p.id}-${id}`}
-                    className="mt-4 text-sm leading-relaxed text-zinc-300 line-clamp-3"
+                    className="mt-3 md:mt-4 text-sm leading-relaxed text-zinc-300 line-clamp-3"
                   >
                     {p.description}
                   </motion.p>
                 </div>
 
                 {/* Card Footer: Tech Stack & Link */}
-                <div className="mt-8 pt-6 border-t border-hairline/30">
-                  <div className="flex flex-wrap gap-2 mb-6">
+                <div className="mt-6 md:mt-8 pt-5 md:pt-6 border-t border-hairline/30">
+                  <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                     {p.stack.map((s) => (
                       <span
                         key={s}
-                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-2.5 py-1 border border-white/15"
+                        className="font-sans text-[0.68rem] font-medium tracking-[0.02em] uppercase text-foreground/90 bg-elevated/80 px-2.5 py-1 border border-white/15 rounded-full"
                       >
                         {s}
                       </span>

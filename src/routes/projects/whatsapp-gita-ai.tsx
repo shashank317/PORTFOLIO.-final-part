@@ -23,19 +23,19 @@ function WhatsAppGitaAIPage() {
     <main className="grain relative bg-background min-h-screen flex flex-col justify-between">
       <Nav />
 
-      <article className="pt-36 pb-24 mx-auto w-full max-w-[1600px] px-6 md:px-12 flex-1">
+      <article className="pt-16 md:pt-36 pb-12 md:pb-24 page-container flex-1">
         <Link
           to="/"
           hash="work"
           onClick={() => triggerHaptic("light")}
-          className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
+          className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-4 md:mb-12"
         >
           <span>← BACK TO WORK</span>
         </Link>
 
         <SectionHead number="03.3" label="Selected Work / Case Study" />
 
-        <div className="mt-10">
+        <div className="mt-4 md:mt-10">
           <span className="display block text-[clamp(4.5rem,14vw,9rem)] leading-none text-elevated">
             03
           </span>

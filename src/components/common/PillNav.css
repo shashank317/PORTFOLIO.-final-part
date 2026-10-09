@@ -165,11 +165,14 @@
 }
 
 .mobile-menu-button {
-  width: var(--nav-h);
-  height: var(--nav-h);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
-  background: var(--base, #000);
-  border: none;
+  background: var(--mobile-menu-btn-bg, #ffffff);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -178,6 +181,8 @@
   cursor: pointer;
   padding: 0;
   position: relative;
+  touch-action: manipulation;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 @media (max-width: 768px) {
@@ -186,12 +191,21 @@
   }
 }
 
+.mobile-menu-button:hover {
+  background: var(--mobile-menu-btn-hover-bg, #f4f4f5);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.94);
+}
+
 .hamburger-line {
   width: 16px;
   height: 2px;
-  background: var(--pill-bg, #fff);
+  background: var(--mobile-menu-btn-icon, #111111);
   border-radius: 1px;
-  transition: all 0.01s ease;
+  transition: all 0.2s ease;
   transform-origin: center;
 }
 
@@ -200,15 +214,15 @@
   top: 4em;
   right: 0;
   width: 200px;
-  background: var(--base, #f0f0f0);
+  background: var(--mobile-menu-bg, #ffffff);
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.08);
   z-index: 998;
   opacity: 0;
   transform-origin: top center;
   visibility: hidden;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .mobile-menu-list {
@@ -223,8 +237,8 @@
 .mobile-menu-popover .mobile-menu-link {
   display: block;
   padding: 12px 16px;
-  color: var(--pill-text, #fff);
-  background-color: var(--pill-bg, #fff);
+  color: var(--mobile-menu-text, #111111);
+  background-color: var(--mobile-menu-link-bg, #f4f4f5);
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -232,8 +246,10 @@
   transition: all 0.2s ease;
 }
 
-.mobile-menu-popover .mobile-menu-link:hover {
+.mobile-menu-popover .mobile-menu-link:hover,
+.mobile-menu-popover .mobile-menu-link.is-active {
   cursor: pointer;
-  background-color: var(--base);
-  color: var(--hover-text, #fff);
+  background-color: var(--mobile-menu-hover-bg, #111111);
+  color: var(--mobile-menu-hover-text, #ffffff);
 }
+

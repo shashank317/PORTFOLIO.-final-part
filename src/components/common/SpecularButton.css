@@ -12,8 +12,8 @@
   border: none;
   margin: 0;
   font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   line-height: 1;
   color: var(--sb-text-color);
   background: color-mix(in srgb, var(--sb-tint) calc(var(--sb-tint-opacity) * 100%), transparent);
@@ -25,6 +25,9 @@
     0 8px 24px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   outline: none;
+  min-height: 48px;
+  white-space: nowrap;
+  touch-action: manipulation;
   transition: transform 0.15s ease;
   text-decoration: none;
 }
@@ -48,18 +51,21 @@
 }
 
 .specular-button--sm {
-  font-size: 0.85rem;
-  padding: 10px 22px;
+  font-size: 0.82rem;
+  padding: 10px 20px;
+  min-height: 44px;
 }
 
 .specular-button--md {
-  font-size: 1rem;
-  padding: 14px 30px;
+  font-size: 0.92rem;
+  padding: 12px 26px;
+  min-height: 48px;
 }
 
 .specular-button--lg {
-  font-size: 1.15rem;
-  padding: 18px 40px;
+  font-size: 1.05rem;
+  padding: 16px 36px;
+  min-height: 52px;
 }
 
 /* Canvas extends past the button so the rim glow can bleed outside the edge */

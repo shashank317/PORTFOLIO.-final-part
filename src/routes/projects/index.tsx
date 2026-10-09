@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionHead } from "@/components/common/SectionHead";
 import { PROJECTS, FEATURED_CASE_STUDIES } from "@/features/projects/data/projects";
 import { triggerHaptic } from "@/lib/haptics";
+import capPortrait from "@/assets/cap-portrait.png";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -22,35 +23,52 @@ export const Route = createFileRoute("/projects/")({
 function ProjectsIndexPage() {
   return (
     <main className="grain relative bg-background min-h-screen flex flex-col justify-between">
-      <Nav />
+      {/* Pinned Fixed Ambient Background Cap Portrait Layer */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 glow-radial opacity-40" />
+        <img
+          src={capPortrait}
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-[50%_15%] opacity-25 md:opacity-35 mix-blend-luminosity"
+        />
+        {/* Soft edge blend overlays & vignettes for optimal text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/95" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-background to-transparent" />
+      </div>
 
-      <article className="pt-36 pb-24 mx-auto w-full max-w-[1600px] px-6 md:px-12 flex-1">
+      {/* Foreground Content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-between">
+        <Nav />
+
+        <article className="pt-16 md:pt-36 pb-12 md:pb-24 page-container flex-1">
         <Link
           to="/"
           onClick={() => triggerHaptic("light")}
-          className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
+          className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-4 md:mb-12"
         >
           <span>← BACK TO HOME</span>
         </Link>
 
         <SectionHead number="03" label="All Projects & Selected Work" />
 
-        <div className="mt-10">
+        <div className="mt-4 md:mt-10">
           <span className="display block text-[clamp(4.5rem,18vw,10rem)] leading-none text-elevated">
             03
           </span>
-          <h1 className="display mt-2 text-[clamp(3.5rem,12vw,8.5rem)] leading-[0.84]">
+          <h1 className="display mt-2 text-[clamp(3rem,11.5vw,8.5rem)] leading-[0.98] md:leading-[0.84]">
             <span>Selected</span><br />
             <span>Projects.</span>
           </h1>
-          <p className="mt-6 max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] text-foreground/90 leading-relaxed font-normal">
+          <p className="mt-4 md:mt-6 max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] text-foreground/90 leading-relaxed font-normal">
             A comprehensive showcase of APIs, full-stack applications, and automated AI systems designed and implemented with Python and modern backend architectures.
           </p>
         </div>
 
         {/* Section 1: Categories Overview */}
-        <div className="mt-20">
-          <h2 className="font-label text-xs uppercase tracking-[0.1em] text-accent mb-8">
+        <div className="mt-8 md:mt-20">
+          <h2 className="font-label text-xs uppercase tracking-[0.1em] text-accent mb-4 md:mb-8">
             01 / Categories & All Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
@@ -217,7 +235,8 @@ function ProjectsIndexPage() {
         </div>
       </article>
 
-      <Footer />
+        <Footer />
+      </div>
     </main>
   );
 }

@@ -22,18 +22,19 @@ export function Contact() {
           src={lightBar}
           alt=""
           aria-hidden="true"
-          className="h-full w-full object-cover object-[50%_20%] opacity-85 mix-blend-luminosity"
+          className="h-full w-full object-cover object-[50%_20%] opacity-45 md:opacity-85 mix-blend-luminosity"
         />
         {/* Soft edge blend overlays fading into dark background to the left */}
+        <div className="absolute inset-0 bg-background/50 md:bg-transparent" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,#050505_15%,rgba(5,5,5,0.75)_35%,rgba(5,5,5,0.15)_65%,rgba(5,5,5,0)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background via-background/80 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 md:px-12">
+      <div className="relative z-10 page-container">
         <SectionHead number="05" label="Contact" />
 
-        <h2 className="display mt-14 text-[clamp(3rem,14vw,9rem)] leading-[0.86] md:text-[clamp(4.5rem,8.5vw,9rem)]">
+        <h2 className="display mt-8 md:mt-14 text-[clamp(2.7rem,12vw,9rem)] leading-[0.98] md:leading-[0.86] tracking-[-0.01em] md:tracking-[-0.03em]">
           <span className="mask">
             <span>LET'S BUILD</span>
           </span>
@@ -45,7 +46,7 @@ export function Contact() {
           </span>
         </h2>
 
-        <div className="mt-16 grid grid-cols-12 gap-y-12 md:gap-x-12 items-end">
+        <div className="mt-8 md:mt-16 grid grid-cols-12 gap-y-8 md:gap-x-12 items-end">
           <p className="reveal col-span-12 max-w-2xl text-base leading-relaxed text-foreground/90 md:col-span-7 md:text-lg font-normal">
             Open to software engineering, backend, and AI-focused roles. Whether you have a challenging project, an engineering role, or just want to connect, feel free to reach out.
           </p>

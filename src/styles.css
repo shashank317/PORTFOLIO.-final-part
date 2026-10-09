@@ -1,3 +1,4 @@
+@import "lenis/dist/lenis.css";
 @import "tailwindcss" source(none);
 @source "../src";
 
@@ -7,7 +8,7 @@
   --color-surface: #0a0a0a;
   --color-elevated: #111111;
   --color-foreground: #f2f2f0;
-  --color-muted-foreground: #8a8a8a;
+  --color-muted-foreground: #a8a8a8;
   --color-hairline: rgba(255, 255, 255, 0.12);
   --color-accent: #ff4d1a;
 
@@ -28,7 +29,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--color-background);
 }
 
@@ -38,6 +38,12 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Scroll margin so sticky / fixed nav doesn't overlap section titles */
+section[id],
+[id] {
+  scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 84px);
 }
 
 ::selection {
@@ -59,8 +65,16 @@ body {
   font-family: var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .display {
+    line-height: 0.84;
+    letter-spacing: -0.03em;
+  }
 }
 
 @utility body-text {
@@ -71,8 +85,25 @@ body {
 }
 
 @utility pad-section {
-  padding-top: clamp(2rem, 4vw, 3.5rem);
-  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .pad-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+
+@utility page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 5vw, 48px);
+  padding-right: clamp(20px, 5vw, 48px);
 }
 
 @utility grain {
@@ -184,7 +215,7 @@ body {
   width: 100%;
   min-height: 360px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(25px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -287,6 +318,13 @@ body {
 
 .dot-live {
   animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* Mobile-only Hero alignment (under 768px). Desktop is 100% unaffected. */
+@media (max-width: 767px) {
+  .hero-mobile-title {
+    transform: translateY(-70px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

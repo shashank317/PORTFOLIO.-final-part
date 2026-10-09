@@ -22,7 +22,7 @@ export function Nav() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-end md:justify-center px-4 pt-6 pointer-events-none">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-end md:justify-center px-4 pt-[calc(env(safe-area-inset-top,0px)+12px)] md:pt-6 pointer-events-none">
       <div className="pointer-events-auto flex justify-center">
         <PillNav
           logo={SH_LOGO}
@@ -30,8 +30,8 @@ export function Nav() {
           items={LINKS}
           className={`backdrop-blur-md rounded-full transition-all duration-500 border ${
             scrolled
-              ? "border-accent/40 shadow-accent/5"
-              : "border-white/10"
+              ? "border-accent/40 shadow-accent/5 bg-surface/80"
+              : "border-white/10 bg-surface/60"
           }`}
           baseColor="rgba(10, 10, 10, 0.6)"
           pillColor="rgba(26, 26, 26, 0.8)"

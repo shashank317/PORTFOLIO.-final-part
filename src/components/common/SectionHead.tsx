@@ -12,7 +12,6 @@ export function SectionHead({
       <span className="label text-foreground">
         {number} / {label}
       </span>
-      <span className="draw rule flex-1" />
     </div>
   );
 }

@@ -106,11 +106,11 @@ function ExperiencePage() {
       <div className="relative z-10 flex-1 flex flex-col justify-between">
         <Nav />
 
-        <article className="pt-36 pb-24 mx-auto w-full max-w-[1600px] px-6 md:px-12 flex-1">
+        <article className="pt-16 md:pt-36 pb-12 md:pb-24 page-container flex-1">
           <Link
             to="/"
             onClick={() => triggerHaptic("light")}
-            className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-12"
+            className="inline-flex items-center gap-2 font-label text-[0.85rem] tracking-[0.06em] uppercase text-muted-foreground transition-colors duration-300 hover:text-accent mb-4 md:mb-12"
           >
             <span>← BACK TO HOME</span>
           </Link>
@@ -118,27 +118,26 @@ function ExperiencePage() {
           <SectionHead number="01" label="Scrollytelling Experience" />
 
           {/* Chapter 0: Hero Overview Story Block */}
-          <section className="story-chapter min-h-[65vh] flex flex-col justify-center py-12">
-            <div className="grid grid-cols-12 gap-y-12 items-center">
+          <section className="story-chapter min-h-0 md:min-h-[65vh] flex flex-col justify-center pt-2 pb-6 md:py-12">
+            <div className="grid grid-cols-12 gap-y-8 md:gap-y-12 items-center">
               <div className="col-span-12 lg:col-span-8">
-                <span className="font-label text-[0.88rem] tracking-[0.06em] uppercase text-accent block mb-4">
+                <span className="font-label text-[0.88rem] tracking-[0.06em] uppercase text-accent block mb-2 md:mb-4">
                   01 // CAREER STORY
                 </span>
                 <span className="display block text-[clamp(4.5rem,18vw,10rem)] leading-none text-elevated">
                   01
                 </span>
-                <h1 className="display mt-2 text-[clamp(3.5rem,12vw,8.5rem)] leading-[0.86]">
+                <h1 className="display mt-2 text-[clamp(3rem,11.5vw,8.5rem)] leading-[0.98] md:leading-[0.86]">
                   <span>Cadmaxx</span><br />
                   <span>Solutions</span>
                 </h1>
 
-                <div className="mt-6 flex flex-wrap items-center gap-4">
+                <div className="mt-4 md:mt-6 flex flex-wrap items-center gap-4">
                   <span className="label text-foreground">Graduate Trainee</span>
                   <span className="label text-muted-foreground">• Jun 2025 — Jun 2026</span>
                 </div>
 
-                <div className="glass-card mt-8 max-w-2xl rounded-[12px] relative overflow-hidden !min-h-0">
-                  <div className="absolute inset-y-0 left-0 w-[2px] bg-accent/70 z-10" />
+                <div className="glass-card mt-6 md:mt-8 max-w-2xl rounded-[12px] relative overflow-hidden !min-h-0">
                   <div className="pl-6 py-4 pr-6">
                     <p className="text-[clamp(1.1rem,1.6vw,1.45rem)] leading-relaxed text-foreground/90 font-normal">
                       Automated CAD design generation using Python and FastAPI, reducing part design turnaround time by 5%. Built a hybrid text-and-vision pipeline with RAG for automated engineering drawing review.
@@ -146,7 +145,7 @@ function ExperiencePage() {
                   </div>
                 </div>
 
-                <div className="mt-10 flex items-center gap-3 font-label text-[0.82rem] tracking-[0.06em] uppercase text-muted-foreground">
+                <div className="mt-6 md:mt-10 flex items-center gap-3 font-label text-[0.82rem] tracking-[0.06em] uppercase text-muted-foreground">
                   <span>SCROLL DOWN TO EXPLORE INITIATIVES</span>
                   <span className="animate-bounce">↓</span>
                 </div>
@@ -155,14 +154,14 @@ function ExperiencePage() {
           </section>
 
           {/* Chapters 1 & 2: Scroll-Driven Story Cards */}
-          <div className="mt-20 flex flex-col gap-24 md:gap-36">
+          <div className="mt-8 md:mt-20 flex flex-col gap-10 md:gap-36">
             {INITIATIVES.map((item, idx) => (
               <section
                 key={item.id}
                 id={item.id}
-                className="story-chapter relative min-h-[70vh] flex flex-col justify-center border-t border-hairline/40 pt-16 md:pt-24"
+                className="story-chapter relative min-h-0 md:min-h-[70vh] flex flex-col justify-center border-t border-hairline/40 pt-8 md:pt-24 pb-4 md:pb-0"
               >
-                <div className="grid grid-cols-12 gap-y-12 md:gap-x-12 items-start">
+                <div className="grid grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-12 items-start">
                   {/* Left Column: Chapter Title & Meta */}
                   <header className="col-span-12 lg:col-span-4 sticky top-32">
                     <span className="font-label text-[0.82rem] tracking-[0.06em] uppercase text-accent block mb-3">
